@@ -21,38 +21,44 @@
 
 This is the source for my personal portfolio at **[harshchaudhary.com.np](https://harshchaudhary.com.np)**. It's styled after a GitHub profile: pinned projects, a contribution heatmap, streak stats, language breakdown, an activity timeline, notes, a blog, releases, resources and a sponsor page.
 
-- **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Lucide icons
+- **Frontend:** React 19, React Router 8 (prerendered), TypeScript, Vite, Tailwind CSS, Lucide icons
 - **Backend** *(coming soon)*: Laravel REST API serving projects, notes, blog posts and contact messages
 - **Hosting:** cPanel, deployed by GitHub Actions on every push
 
 ## 🗂️ Project Structure
 
 ```text
-src/
-├── components/        # Heatmap, project cards, stats, timeline
-│   ├── layout/        # TopBar, Sidebar, TabNav, mobile header
-│   └── ui/            # Skeleton loaders
-├── hooks/             # Hash router, in-view observer, formatters
-├── pages/             # Overview, Projects, Notes, About, Contact, Blog, …
-├── services/
-│   ├── api.ts         # Data layer (will call the Laravel API)
-│   └── mockData.ts    # Placeholder content for now
-└── types/             # Shared TypeScript models
+frontend/                  React 19 + React Router 8 (prerendered static site)
+├── react-router.config.ts # SSG config: every route is rendered to HTML at build time
+└── src/
+    ├── root.tsx           # HTML shell, site-wide loader, layout, error boundary
+    ├── routes.ts          # Route table (real paths, no hash URLs)
+    ├── routes/            # One module per page: loader + meta (SEO) + component
+    ├── components/        # Heatmap, project cards, stats, timeline, layout
+    ├── lib/
+    │   ├── content.server.ts  # Build-time data layer (mock now, Laravel API next)
+    │   ├── seo.ts             # Title, description, canonical, Open Graph, Twitter tags
+    │   └── format.ts          # UTC-safe date and number formatting
+    └── types/             # Shared TypeScript models
+backend/                   Laravel API + admin panel (coming next)
+docs/PLAN.md               Full build plan
 ```
 
 ## 🚀 Getting Started
 
 ```bash
+cd frontend
 npm install
-npm run dev        # start the dev server
-npm run build      # production build → dist/
-npm run typecheck  # TypeScript checks
+npm run dev        # dev server with hot reload
+npm run build      # prerender every page → build/client/
+npm run typecheck  # route type generation + TypeScript
 npm run lint       # ESLint
 ```
 
 ## 🛣️ Roadmap
 
 - [x] React frontend scaffold
+- [x] Real URLs + prerendered HTML for every page
 - [ ] Laravel API backend
 - [ ] Connect the frontend to live data
 - [ ] CI/CD to cPanel with GitHub Actions
