@@ -57,3 +57,56 @@
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Hero fallback text: same palette as the particles. */
+.hero-static-text {
+  background: linear-gradient(90deg, #0969da, #8250df 45%, #bf3989 65%, #1f883d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Contribution graph fills in column by column on load. */
+.heat-cell {
+  animation: heatIn 0.4s ease-out both;
+  animation-delay: calc(var(--w, 0) * 9ms);
+}
+@keyframes heatIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/*
+ * Scroll reveal with zero JavaScript. Only browsers with scroll-driven animations run it; others
+ * simply show the content, so nothing is ever hidden while waiting for JS (good for LCP and SEO).
+ */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: revealIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+@keyframes revealIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Page-to-page cross-fade (View Transitions API, used by router links). */
+::view-transition-old(root) {
+  animation: 120ms ease-out both vtOut;
+}
+::view-transition-new(root) {
+  animation: 220ms ease-out both vtIn;
+}
+@keyframes vtOut { to { opacity: 0; transform: translateY(-4px); } }
+@keyframes vtIn { from { opacity: 0; transform: translateY(6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

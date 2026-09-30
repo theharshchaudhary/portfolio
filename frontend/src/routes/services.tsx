@@ -30,11 +30,11 @@ export default function Services({ loaderData }: Route.ComponentProps) {
   const { page, services, faqs, testimonials } = loaderData;
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-8">
       <PageHeader title={page.heading ?? 'Services'} intro={page.intro} />
 
       {services.length === 0 ? (
-        <EmptyState icon={Wrench}>Service details are coming soon. <Link to="/contact" className="text-github-accent hover:underline">Get in touch</Link> in the meantime.</EmptyState>
+        <EmptyState icon={Wrench}>Service details are coming soon. <Link to="/contact" viewTransition className="text-github-accent hover:underline">Get in touch</Link> in the meantime.</EmptyState>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((service) => {
@@ -98,7 +98,7 @@ export default function Services({ loaderData }: Route.ComponentProps) {
                     <strong className="text-github-fg">{t.name}</strong>
                     {[t.role, t.company].filter(Boolean).length > 0 && `, ${[t.role, t.company].filter(Boolean).join(', ')}`}
                     {t.project && (
-                      <> · <Link to={`/projects/${t.project.slug}`} className="text-github-accent hover:underline">{t.project.title}</Link></>
+                      <> · <Link to={`/projects/${t.project.slug}`} viewTransition className="text-github-accent hover:underline">{t.project.title}</Link></>
                     )}
                   </span>
                 </figcaption>

@@ -94,7 +94,7 @@ class SiteSettings extends SingletonPage
                 Tab::make('Hero')->icon(Heroicon::OutlinedSparkles)->schema([
                     Radio::make('hero.mode')->label('Particles form')->options(['text' => 'Text', 'avatar' => 'My avatar'])->default('text')->inline(),
                     TextInput::make('hero.particleText')->label('Particle text')->maxLength(40),
-                    TagsInput::make('hero.introLines')->label('Rotating intro lines')->columnSpanFull(),
+                    TagsInput::make('hero.introLines')->label('Intro highlights')->helperText('Short phrases shown as chips under your name.')->columnSpanFull(),
                     Repeater::make('hero.ctas')->label('Buttons')->schema([
                         TextInput::make('label')->required(),
                         TextInput::make('href')->required()->placeholder('/projects'),

@@ -49,7 +49,7 @@ export default function CommandPalette({ entries, onClose }: { entries: SearchEn
   const go = (entry: SearchEntry | undefined) => {
     if (!entry) return;
     onClose();
-    navigate(entry.path);
+    navigate(entry.path, { viewTransition: true });
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {

@@ -15,13 +15,13 @@ export type ProjectSummary = Omit<Project, 'body'>;
 
 export function ProjectCard({ project }: { project: ProjectSummary }) {
   return (
-    <article className="group relative flex flex-col rounded-md border border-github-border bg-github-canvas p-4 transition-all hover:-translate-y-0.5 hover:border-github-border-muted hover:shadow-github-md">
+    <article className="reveal group relative flex flex-col rounded-md border border-github-border bg-github-canvas p-4 transition-all hover:-translate-y-0.5 hover:border-github-border-muted hover:shadow-github-md">
       <div className="flex items-start justify-between gap-2">
         <h3 className="flex min-w-0 items-center gap-2">
           <FolderIcon />
           <Link
             to={`/projects/${project.slug}`}
-            prefetch="intent"
+            prefetch="intent" viewTransition
             className="truncate rounded font-semibold text-github-accent after:absolute after:inset-0 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent"
           >
             {project.title}

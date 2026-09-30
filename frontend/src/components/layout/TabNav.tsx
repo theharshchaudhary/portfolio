@@ -14,6 +14,7 @@ export function TabNav({ items }: { items: NavItem[] }) {
           to={item.path}
           end={item.path === '/'}
           prefetch="intent"
+          viewTransition
           className={({ isActive }) =>
             `group relative flex flex-shrink-0 items-center gap-2 px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-2 ${
               isActive ? 'text-github-fg' : 'text-github-fg-muted hover:bg-github-subtle'

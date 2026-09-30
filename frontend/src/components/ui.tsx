@@ -49,11 +49,11 @@ export type PostSummary = Omit<Post, 'body'>;
 
 export function PostCard({ post }: { post: PostSummary }) {
   return (
-    <article className="group relative rounded-md border border-github-border bg-github-canvas p-5 transition-all hover:-translate-y-0.5 hover:border-github-border-muted hover:shadow-github-md">
+    <article className="reveal group relative rounded-md border border-github-border bg-github-canvas p-5 transition-all hover:-translate-y-0.5 hover:border-github-border-muted hover:shadow-github-md">
       <h3 className="text-base font-semibold text-github-fg">
         <Link
           to={`/blog/${post.slug}`}
-          prefetch="intent"
+          prefetch="intent" viewTransition
           className="rounded after:absolute after:inset-0 group-hover:text-github-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent"
         >
           {post.title}

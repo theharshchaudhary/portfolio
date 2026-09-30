@@ -6,6 +6,7 @@ import { StreakStats } from '@/components/StreakStats';
 import { ActivityTimeline } from '@/components/ActivityTimeline';
 import { ProjectCard } from '@/components/ProjectCard';
 import { PostCard } from '@/components/ui';
+import { HeroBanner } from '@/components/hero/HeroBanner';
 import { getHome } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
 import type { loader as rootLoader } from '@/root';
@@ -25,7 +26,7 @@ function SectionTitle({ icon: Icon, title, to, linkLabel }: { icon: typeof Pin; 
         <Icon className="h-4 w-4 text-github-fg-muted" />
         {title}
       </h2>
-      <Link to={to} className="flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent">
+      <Link to={to} viewTransition className="flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent">
         {linkLabel}
         <ArrowRight className="h-3.5 w-3.5" />
       </Link>
@@ -40,42 +41,48 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   const hero = settings.hero;
 
   return (
-    <div className="space-y-8 animate-fade-in">
-      <section className="rounded-lg border border-github-border bg-gradient-to-br from-github-subtle via-github-canvas to-github-canvas p-6 sm:p-8" aria-labelledby="hero-heading">
-        <p className="text-sm font-medium text-github-accent">Hi, I’m</p>
-        <h1 id="hero-heading" className="mt-1 text-3xl font-bold tracking-tight text-github-fg sm:text-4xl">
-          {page.heading ?? profile.name}
-        </h1>
-        {(page.intro ?? profile.headline) && (
-          <p className="mt-2 text-lg text-github-fg-muted">{page.intro ?? profile.headline}</p>
-        )}
-        {hero.introLines && hero.introLines.length > 0 && (
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {hero.introLines.map((line) => (
-              <li key={line} className="rounded-full border border-github-border bg-github-canvas px-3 py-1 text-sm text-github-fg-muted">
-                {line}
-              </li>
-            ))}
-          </ul>
-        )}
-        {hero.ctas && hero.ctas.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {hero.ctas.map((cta) => (
-              <Link
-                key={cta.href}
-                to={cta.href}
-                prefetch="intent"
-                className={
-                  cta.style === 'primary'
-                    ? 'rounded-md bg-github-success-emphasis px-4 py-2 text-sm font-medium text-white shadow-github-sm transition-colors hover:bg-github-success-fg focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-2'
-                    : 'rounded-md border border-github-border bg-github-canvas px-4 py-2 text-sm font-medium text-github-fg transition-colors hover:bg-github-subtle focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-2'
-                }
-              >
-                {cta.label}
-              </Link>
-            ))}
-          </div>
-        )}
+    <div className="space-y-8">
+      <section className="rounded-lg border border-github-border bg-github-canvas" aria-labelledby="hero-heading">
+        <HeroBanner
+          text={hero.particleText || profile.name}
+          imageUrl={hero.mode === 'avatar' ? profile.avatar : null}
+        />
+        <div className="p-6 sm:p-8">
+          <p className="text-sm font-medium text-github-accent">Hi, I’m</p>
+          <h1 id="hero-heading" className="mt-1 text-3xl font-bold tracking-tight text-github-fg sm:text-4xl">
+            {page.heading ?? profile.name}
+          </h1>
+          {(page.intro ?? profile.headline) && (
+            <p className="mt-2 text-lg text-github-fg-muted">{page.intro ?? profile.headline}</p>
+          )}
+          {hero.introLines && hero.introLines.length > 0 && (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {hero.introLines.map((line) => (
+                <li key={line} className="rounded-full border border-github-border bg-github-canvas px-3 py-1 text-sm text-github-fg-muted">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          )}
+          {hero.ctas && hero.ctas.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-3">
+              {hero.ctas.map((cta) => (
+                <Link
+                  key={cta.href}
+                  to={cta.href}
+                  prefetch="intent" viewTransition
+                  className={
+                    cta.style === 'primary'
+                      ? 'rounded-md bg-github-success-emphasis px-4 py-2 text-sm font-medium text-white shadow-github-sm transition-colors hover:bg-github-success-fg focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-2'
+                      : 'rounded-md border border-github-border bg-github-canvas px-4 py-2 text-sm font-medium text-github-fg transition-colors hover:bg-github-subtle focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-2'
+                  }
+                >
+                  {cta.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       {github && (
@@ -86,7 +93,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       )}
 
       {pinned.length > 0 && (
-        <section>
+        <section className="reveal">
           <SectionTitle icon={Pin} title="Pinned projects" to="/projects" linkLabel="All projects" />
           <div className="grid gap-3 sm:grid-cols-2">
             {pinned.map((project) => (
@@ -97,7 +104,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       )}
 
       {latestPosts.length > 0 && (
-        <section>
+        <section className="reveal">
           <SectionTitle icon={Rss} title="Latest writing" to="/blog" linkLabel="All posts" />
           <div className="space-y-3">
             {latestPosts.map((post) => (

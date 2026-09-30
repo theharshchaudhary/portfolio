@@ -36,7 +36,7 @@ export default function Projects({ loaderData }: Route.ComponentProps) {
   const rest = filtered.filter((p) => !p.pinned);
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6">
       <PageHeader title={page.heading ?? 'Projects'} intro={page.intro}>
         <span className="rounded-full border border-github-border bg-github-subtle px-3 py-1 text-xs font-medium text-github-fg-muted">
           {projects.length} projects

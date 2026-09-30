@@ -52,7 +52,7 @@ export default function Support({ loaderData }: Route.ComponentProps) {
   const wallets = methods.filter((m) => m.crypto);
 
   return (
-    <div className="max-w-4xl space-y-8 animate-fade-in">
+    <div className="max-w-4xl space-y-8">
       <PageHeader title={page.heading ?? 'Support my work'} intro={page.intro} />
 
       {methods.length === 0 && <EmptyState icon={Heart}>Support options are coming soon.</EmptyState>}

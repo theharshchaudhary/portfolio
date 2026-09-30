@@ -25,9 +25,9 @@ export default function BlogTag({ loaderData }: Route.ComponentProps) {
   const { tag, posts } = loaderData;
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6">
       <nav aria-label="Breadcrumb">
-        <Link to="/blog" className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
+        <Link to="/blog" viewTransition className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
           <ArrowLeft className="h-4 w-4" />
           Blog
         </Link>

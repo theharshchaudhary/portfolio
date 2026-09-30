@@ -74,7 +74,7 @@ export default function Contact({ loaderData }: Route.ComponentProps) {
   const fieldError = (field: string) => errors[field]?.[0];
 
   return (
-    <div className="max-w-3xl space-y-6 animate-fade-in">
+    <div className="max-w-3xl space-y-6">
       <PageHeader title={page.heading ?? 'Get in touch'} intro={page.intro} />
 
       {channels.length > 0 && (

@@ -22,7 +22,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
   const { page, posts, tags } = loaderData;
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6">
       <PageHeader title={page.heading ?? 'Blog'} intro={page.intro}>
         <span className="rounded-full border border-github-border bg-github-subtle px-3 py-1 text-xs font-medium text-github-fg-muted">
           {posts.length} posts
@@ -35,7 +35,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
             <Link
               key={tag.slug}
               to={`/blog/tag/${tag.slug}`}
-              prefetch="intent"
+              prefetch="intent" viewTransition
               className="rounded-full border border-github-border bg-github-canvas px-3 py-1 text-xs font-medium text-github-fg-muted transition-colors hover:border-github-accent hover:text-github-accent"
             >
               {tag.name} <span className="text-github-fg-subtle">{tag.count}</span>

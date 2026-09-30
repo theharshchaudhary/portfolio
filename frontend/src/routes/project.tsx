@@ -34,9 +34,9 @@ export default function ProjectDetail({ loaderData }: Route.ComponentProps) {
   const { project, body, testimonials, related } = loaderData;
 
   return (
-    <article className="space-y-6 animate-fade-in">
+    <article className="space-y-6">
       <nav aria-label="Breadcrumb">
-        <Link to="/projects" className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
+        <Link to="/projects" viewTransition className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
           <ArrowLeft className="h-4 w-4" />
           Projects
         </Link>

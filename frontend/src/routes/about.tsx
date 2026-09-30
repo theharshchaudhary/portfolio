@@ -75,7 +75,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
   ].filter((s) => s.value);
 
   return (
-    <div className="max-w-3xl space-y-8 animate-fade-in">
+    <div className="max-w-3xl space-y-8">
       <PageHeader title={page.heading ?? `About ${profile.name}`} intro={page.intro ?? profile.headline}>
         {profile.cvUrl && (
           <a
@@ -147,7 +147,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
       )}
 
       <p className="text-sm text-github-fg-muted">
-        Want to work together? <Link to="/contact" className="font-medium text-github-accent hover:underline">Get in touch</Link>.
+        Want to work together? <Link to="/contact" viewTransition className="font-medium text-github-accent hover:underline">Get in touch</Link>.
       </p>
     </div>
   );

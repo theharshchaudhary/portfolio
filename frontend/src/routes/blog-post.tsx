@@ -34,9 +34,9 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { post, body, newer, older, related } = loaderData;
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-8">
       <nav aria-label="Breadcrumb">
-        <Link to="/blog" className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
+        <Link to="/blog" viewTransition className="inline-flex items-center gap-1 rounded text-sm font-medium text-github-accent hover:underline">
           <ArrowLeft className="h-4 w-4" />
           All posts
         </Link>
@@ -77,13 +77,13 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           {(newer || older) && (
             <nav aria-label="More posts" className="mt-10 grid gap-3 border-t border-github-border pt-6 sm:grid-cols-2">
               {older ? (
-                <Link to={`/blog/${older.slug}`} className="group rounded-md border border-github-border p-4 transition-colors hover:border-github-accent">
+                <Link to={`/blog/${older.slug}`} viewTransition className="group rounded-md border border-github-border p-4 transition-colors hover:border-github-accent">
                   <span className="flex items-center gap-1 text-xs text-github-fg-subtle"><ArrowLeft className="h-3 w-3" /> Older</span>
                   <span className="mt-1 block text-sm font-medium text-github-fg group-hover:text-github-accent">{older.title}</span>
                 </Link>
               ) : <span />}
               {newer && (
-                <Link to={`/blog/${newer.slug}`} className="group rounded-md border border-github-border p-4 text-right transition-colors hover:border-github-accent">
+                <Link to={`/blog/${newer.slug}`} viewTransition className="group rounded-md border border-github-border p-4 text-right transition-colors hover:border-github-accent">
                   <span className="flex items-center justify-end gap-1 text-xs text-github-fg-subtle">Newer <ArrowRight className="h-3 w-3" /></span>
                   <span className="mt-1 block text-sm font-medium text-github-fg group-hover:text-github-accent">{newer.title}</span>
                 </Link>

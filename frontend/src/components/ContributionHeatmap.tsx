@@ -41,6 +41,9 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
         const firstDay = new Date(week[0].date);
         const month = firstDay.getUTCMonth();
         if (month !== lastMonth) {
+          // Like GitHub: drop a leading partial month whose label would collide with the next one.
+          const prev = monthLabels[monthLabels.length - 1];
+          if (prev && col - prev.col < 3) monthLabels.pop();
           monthLabels.push({ col, label: MONTH_NAMES[month] });
           lastMonth = month;
         }
@@ -76,6 +79,7 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
     setTooltip((prev) => ({ ...prev, visible: false }));
   };
 
+  const total = data.reduce((sum, d) => sum + d.count, 0);
   const cellSize = 11;
   const gap = 3;
   const colWidth = cellSize + gap;
@@ -83,11 +87,16 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
   return (
     <div className="rounded-md border border-github-border bg-github-canvas p-4 sm:p-6">
       <h2 className="mb-4 text-base font-semibold text-github-fg">
-        {data.reduce((s, d) => s + d.count, 0)} contributions in the last year
+        {total.toLocaleString('en-US')} contributions in the last year
       </h2>
 
       <div className="overflow-x-auto scrollbar-thin" ref={containerRef}>
-        <div className="relative inline-block min-w-full" style={{ minWidth: '700px' }}>
+        <div
+          className="relative inline-block min-w-full"
+          style={{ minWidth: '700px' }}
+          role="img"
+          aria-label={`Contribution graph: ${total} contributions in the last year`}
+        >
           {tooltip.visible && (
             <div
               className="pointer-events-none absolute z-10 whitespace-nowrap rounded-md border border-github-border bg-github-canvas px-2.5 py-1.5 text-xs shadow-github-md animate-fade-in"
@@ -143,29 +152,16 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
                       return (
                         <div
                           key={dayIdx}
-                          className="rounded-[2px] transition-transform hover:ring-1 hover:ring-github-fg-muted hover:ring-offset-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-github-accent"
+                          className="heat-cell cursor-pointer rounded-[2px] hover:ring-1 hover:ring-github-fg-muted"
                           style={{
                             width: `${cellSize}px`,
                             height: `${cellSize}px`,
                             backgroundColor: LEVEL_COLORS[day.level],
+                            ['--w' as string]: weekIdx,
                           }}
                           onMouseEnter={(e) => handleMouseEnter(day, e)}
                           onMouseMove={(e) => handleMouseMove(day, e)}
                           onMouseLeave={handleMouseLeave}
-                          role="img"
-                          aria-label={`${day.count} contributions on ${day.date}`}
-                          tabIndex={0}
-                          onFocus={(e) => {
-                            const rect = (e.target as HTMLElement).getBoundingClientRect();
-                            const containerRect = containerRef.current!.getBoundingClientRect();
-                            setTooltip({
-                              visible: true,
-                              x: rect.left - containerRect.left + rect.width / 2,
-                              y: rect.top - containerRect.top - 10,
-                              text: formatTooltip(day),
-                            });
-                          }}
-                          onBlur={handleMouseLeave}
                         />
                       );
                     })}
