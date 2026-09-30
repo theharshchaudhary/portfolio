@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin, Mail, Globe, MapPin, Building, Link as LinkIcon, Users, Eye } from 'lucide-react';
+import { Github, Twitter, Linkedin, Mail, MapPin, Building, Link as LinkIcon, Users, Eye } from 'lucide-react';
 import type { Profile } from '@/types';
 import { formatNumber } from '@/hooks/useRouter';
 
