@@ -38,9 +38,16 @@ new or changed are sent to IndexNow.
 
 ## One-time setup
 
-1. **cPanel** (via the API): subdomain `staging` → `apps/portfolio/public`, pin PHP 8.4, confirm
-   AutoSSL; MySQL database + user `harshchaudhary_portfolio` (password in `~/.ssh/portfolio_db_password.txt`).
-2. **Server `.env`** uploaded to `~/apps/portfolio/.env` (chmod 600):
+1. **cPanel UI** (the API is behind an Imunify360 bot challenge for scripts, including GitHub's runners):
+   - *Domains → Create A New Domain*: `staging.harshchaudhary.com.np`, untick "Share document root",
+     document root `apps/portfolio/public`.
+   - *MultiPHP Manager*: tick `staging.harshchaudhary.com.np` → PHP 8.4 (`ea-php84`) → Apply.
+   - *Manage My Databases*: create database `portfolio` (→ `harshchaudhary_portfolio`), user `portfolio`
+     (→ `harshchaudhary_portfolio`) with the password in `~/.ssh/portfolio_db_password.txt`, then add the
+     user to the database with **All Privileges**.
+   - *SSL/TLS Status*: tick the staging domain → Run AutoSSL.
+2. **Server `.env`**: run **Actions → Provision server (one-off)** (defaults). It writes
+   `~/apps/portfolio/.env` (chmod 600) over FTPS from the repository secrets. Its contents:
 
    ```dotenv
    APP_NAME="Harsh Chaudhary"
