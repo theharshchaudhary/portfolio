@@ -1,0 +1,275 @@
+name: CI / Deploy
+
+# Tests run on every push and PR. Deploys go to the cPanel host (FTPS only, no SSH):
+#   app   backend code + Laravel's public files, when backend/ or deploy/ changes
+#   site  the prerendered static site, on every deploy, on content edits in the admin panel
+#         (repository_dispatch "content-updated") and daily (fresh GitHub stats)
+# See docs/DEPLOY.md for the one-time setup and the secrets/variables used here.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
+  pull_request:
+  repository_dispatch:
+    types: [content-updated]
+  schedule:
+    - cron: '15 0 * * *' # 06:00 Nepal time
+  workflow_dispatch:
+    inputs:
+      app:
+        description: Deploy the backend too (not only the static site)
+        type: boolean
+        default: false
+
+# One deploy at a time. GitHub keeps only the newest pending run, so a burst of admin edits
+# collapses into one rebuild that picks up all of them.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'deploy' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  PHP_VERSION: '8.4'
+  NODE_VERSION: '22'
+  SITE_URL: ${{ vars.SITE_URL }}
+  SITE_ENV: ${{ vars.SITE_ENV || 'staging' }}
+  FTP_DIR: ${{ vars.FTP_DIR || 'portfolio' }}
+
+jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+        if: github.event_name == 'push'
+      - uses: dorny/paths-filter@v3
+        id: filter
+        if: github.event_name == 'push'
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+              - 'deploy/**'
+
+  backend-tests:
+    name: Backend tests
+    if: github.event_name == 'push' || github.event_name == 'pull_request' || inputs.app
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, intl, pdo_sqlite, gd, bcmath, zip
+          coverage: none
+      - uses: actions/cache@v4
+        with:
+          path: backend/vendor
+          key: vendor-dev-php${{ env.PHP_VERSION }}-${{ hashFiles('backend/composer.lock') }}
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - name: Code style
+        run: vendor/bin/pint --test
+      - name: Tests
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan test
+
+  frontend-checks:
+    name: Frontend checks + Lighthouse
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run typecheck
+      # Fixture content: checks need no live API. This build is never deployed.
+      - name: Build (fixture content)
+        run: npm run build
+        env:
+          CONTENT_SOURCE: fixture
+          SITE_ENV: production
+      - name: Lighthouse budgets
+        run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+
+  deploy-app:
+    name: Deploy backend
+    needs: [changes, backend-tests]
+    # Deploys stay off until the repository variable SITE_URL is set (docs/DEPLOY.md).
+    if: >-
+      always() && vars.SITE_URL != '' && needs.backend-tests.result == 'success' &&
+      ((github.event_name == 'push' && needs.changes.outputs.backend == 'true') || inputs.app)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: ${{ vars.SITE_ENV || 'staging' }}
+      url: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check deploy configuration
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+        run: |
+          if [ -z "$FTP_SERVER" ] || [ -z "$OPS_TOKEN" ] || [ -z "$SITE_URL" ]; then
+            echo "::error title=Missing configuration::Set secrets FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, OPS_TOKEN and variable SITE_URL (docs/DEPLOY.md)."
+            exit 1
+          fi
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, intl, gd, bcmath, zip
+          coverage: none
+      - uses: actions/cache@v4
+        with:
+          path: backend/vendor
+          key: vendor-prod-php${{ env.PHP_VERSION }}-${{ hashFiles('backend/composer.lock') }}
+      # --no-dev also regenerates bootstrap/cache/packages.php without dev-only providers.
+      - name: Install production dependencies
+        working-directory: backend
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist
+          php artisan filament:assets --no-interaction
+
+      - name: Assemble app release
+        run: |
+          mkdir -p bundle/public
+          cd backend
+          cp -r app bootstrap config database resources routes vendor artisan composer.json composer.lock ../bundle/
+          # Only the committed skeleton of storage/; logs, sessions and uploads live on the server.
+          git ls-files storage | xargs -I{} cp --parents {} ../bundle/
+          # Laravel's public files (front controller, Filament assets). The site owns .htaccess and robots.txt.
+          cp public/index.php public/favicon.ico ../bundle/public/
+          cp -r public/css public/js public/fonts ../bundle/public/ 2>/dev/null || true
+          cd ..
+          cp deploy/unpack.php bundle/public/_unpack.php
+          cp deploy/app.htaccess bundle/public/.htaccess.app
+          (cd bundle/public && ls -A > .app-files)
+          echo "$GITHUB_SHA" > bundle/public/app-version.txt
+          echo "app-version.txt" >> bundle/public/.app-files
+          tar --format=ustar -czf app.tar.gz -C bundle $(ls -A bundle)
+          echo "App release: $(find bundle -type f | wc -l) files, $(du -sh app.tar.gz | cut -f1)"
+
+      - name: Upload over FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          # The host's FTPS certificate doesn't match its IP, hence --insecure; the channel is still TLS.
+          ftp() { curl -sS --ssl-reqd --insecure --ftp-create-dirs --retry 3 --user "$FTP_USERNAME:$FTP_PASSWORD" "$@"; }
+          ftp -T app.tar.gz "ftp://$FTP_SERVER/$FTP_DIR/_releases/app-$GITHUB_SHA.tar.gz"
+          # Also upload the unpacker itself: bootstraps the first deploy and ships unpacker changes.
+          ftp -T deploy/unpack.php "ftp://$FTP_SERVER/$FTP_DIR/public/_unpack.php"
+
+      - name: Install release
+        env:
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+        run: ./deploy/ci.sh unpack app
+
+      - name: Post-deploy tasks (migrate, seed, caches)
+        env:
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+        run: ./deploy/ci.sh ops deploy
+
+      - name: Smoke test
+        run: |
+          curl -fsS -m 30 "$SITE_URL/up" > /dev/null && echo "OK /up"
+          curl -fsS -m 30 "$SITE_URL/app-version.txt" | grep -q "$GITHUB_SHA" && echo "OK app version"
+          curl -fsS -m 30 "$SITE_URL/api/v1/content" | jq -e '.settings.siteName' > /dev/null && echo "OK content API"
+
+  deploy-site:
+    name: Build & deploy site
+    needs: [deploy-app, frontend-checks]
+    if: >-
+      always() && vars.SITE_URL != '' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&
+      needs.deploy-app.result != 'failure' && needs.deploy-app.result != 'cancelled' &&
+      needs.frontend-checks.result != 'failure' && needs.frontend-checks.result != 'cancelled'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: ${{ vars.SITE_ENV || 'staging' }}
+      url: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh GitHub data (daily run)
+        if: github.event_name == 'schedule'
+        env:
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+        # rebuild=0: this job builds right after, no need for a second run. A failed sync keeps old data.
+        run: ./deploy/ci.sh ops "github-sync?rebuild=0" || echo "::warning::GitHub sync failed; building with cached data"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+        working-directory: frontend
+
+      - name: Build from live content
+        working-directory: frontend
+        env:
+          CONTENT_API_URL: ${{ vars.SITE_URL }}/api/v1/content
+        run: npm run build
+
+      - name: Package site release
+        run: |
+          echo "$GITHUB_SHA" > frontend/build/client/site-version.txt
+          echo "site-version.txt" >> frontend/build/client/.site-files
+          tar --format=ustar -czf site.tar.gz -C frontend/build/client $(ls -A frontend/build/client)
+          echo "Site release: $(find frontend/build/client -type f | wc -l) files, $(du -sh site.tar.gz | cut -f1)"
+
+      # Remember what was live, to ping IndexNow only with pages that changed.
+      - name: Fetch previous URL list
+        run: curl -fsS -m 30 "$SITE_URL/seo-urls.json" -o previous-urls.json || echo '[]' > previous-urls.json
+
+      - name: Upload over FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          ftp() { curl -sS --ssl-reqd --insecure --ftp-create-dirs --retry 3 --user "$FTP_USERNAME:$FTP_PASSWORD" "$@"; }
+          ftp -T site.tar.gz "ftp://$FTP_SERVER/$FTP_DIR/_releases/site-$GITHUB_SHA.tar.gz"
+
+      - name: Install release
+        env:
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+        run: ./deploy/ci.sh unpack site
+
+      - name: Smoke test
+        run: |
+          check() {
+            code=$(curl -s -o /tmp/body -m 30 -w "%{http_code}" "$SITE_URL$1")
+            [ "$code" = "$2" ] || { echo "::error title=Smoke test failed::$1 returned $code, expected $2"; exit 1; }
+            echo "OK $1 ($code)"
+          }
+          check / 200
+          check /projects 200
+          check /blog 200
+          check /sitemap.xml 200
+          check /this-page-does-not-exist 404
+          curl -fsS -m 30 "$SITE_URL/site-version.txt" | grep -q "$GITHUB_SHA" && echo "OK site version"
+
+      - name: Notify search engines (IndexNow)
+        if: env.SITE_ENV == 'production'
+        run: ./deploy/ci.sh indexnow previous-urls.json frontend/build/client/seo-urls.json

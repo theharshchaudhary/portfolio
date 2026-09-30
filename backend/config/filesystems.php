@@ -38,11 +38,11 @@ return [
             'report' => false,
         ],
 
-        // Admin uploads. UPLOADS_PATH lets production keep them outside the deployed code
-        // directory so deploys never wipe them; they're served from /uploads.
+        // Admin uploads live in storage/ (kept across deploys) and are served at /uploads through
+        // the public/uploads symlink below (`php artisan storage:link`, or the ops deploy endpoint).
         'public' => [
             'driver' => 'local',
-            'root' => env('UPLOADS_PATH', public_path('uploads')),
+            'root' => storage_path('app/public'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/uploads',
             'visibility' => 'public',
             'throw' => false,
@@ -76,7 +76,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('uploads') => storage_path('app/public'),
     ],
 
 ];

@@ -57,4 +57,11 @@ return [
         'token' => env('OPS_TOKEN'),
     ],
 
+    // First admin account, created (never overwritten) by the seeder.
+    'admin' => [
+        'name' => env('ADMIN_NAME', 'Admin'),
+        'email' => env('ADMIN_EMAIL'),
+        'password' => env('ADMIN_PASSWORD'),
+    ],
+
 ];

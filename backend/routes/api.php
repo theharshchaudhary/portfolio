@@ -14,6 +14,8 @@ Route::prefix('v1')->group(function () {
 });
 
 Route::prefix('ops')->middleware(EnsureOpsToken::class)->group(function () {
+    Route::post('deploy', [OpsController::class, 'deploy']);
     Route::post('github-sync', [OpsController::class, 'githubSync']);
+    Route::get('runs/{run}', [OpsController::class, 'runStatus'])->where('run', '[a-z0-9]{16}');
     Route::get('status', [OpsController::class, 'status']);
 });

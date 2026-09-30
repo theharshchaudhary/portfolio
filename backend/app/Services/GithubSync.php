@@ -49,7 +49,7 @@ class GithubSync
     public function __construct(private SiteBuilder $builder) {}
 
     /** @return array<string, int> counts of what was stored, for logs and the admin notification */
-    public function run(): array
+    public function run(bool $rebuild = true): array
     {
         $login = $this->username();
         $user = $this->client()
@@ -78,7 +78,9 @@ class GithubSync
         $this->store('activity', $this->activity($login));
 
         $updated = $this->updateProjects($repos);
-        $this->builder->request('GitHub data synced');
+        if ($rebuild) {
+            $this->builder->request('GitHub data synced');
+        }
 
         return ['days' => count($days), 'repos' => count($repos), 'projects_updated' => $updated];
     }

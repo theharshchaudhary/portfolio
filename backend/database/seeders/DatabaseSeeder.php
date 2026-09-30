@@ -11,10 +11,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SiteSeeder::class);
 
-        if (filled(env('ADMIN_EMAIL')) && filled(env('ADMIN_PASSWORD'))) {
+        $admin = config('services.admin');
+        if (filled($admin['email']) && filled($admin['password'])) {
             User::firstOrCreate(
-                ['email' => env('ADMIN_EMAIL')],
-                ['name' => env('ADMIN_NAME', 'Admin'), 'password' => env('ADMIN_PASSWORD')],
+                ['email' => $admin['email']],
+                ['name' => $admin['name'], 'password' => $admin['password']],
             );
         }
 
