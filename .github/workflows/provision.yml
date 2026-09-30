@@ -42,10 +42,11 @@ jobs:
           CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
           SUB: ${{ inputs.subdomain }}
         run: |
+          set -o pipefail
           api() { # api <Module/function> [--data-urlencode k=v ...] → prints .data, fails on API errors
             local out; out=$(curl -sk -m 60 -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" "${@:2}" "https://$CPANEL_HOST:2083/execute/$1")
-            echo "$out" | jq -e . > /dev/null 2>&1 || { echo "::error::$1 returned non-JSON: $(echo "$out" | head -c 200)"; exit 1; }
-            [ "$(echo "$out" | jq -r .status)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors)"; exit 1; }
+            echo "$out" | jq -e . > /dev/null 2>&1 || { echo "::error::$1 returned non-JSON: $(echo "$out" | grep -o '<title>[^<]*' | head -1)$(echo "$out" | head -c 120)" >&2; exit 1; }
+            [ "$(echo "$out" | jq -r .status)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors)" >&2; exit 1; }
             echo "$out" | jq -c .data
           }
           FQDN="$SUB.$ROOT_DOMAIN"
@@ -64,9 +65,10 @@ jobs:
           CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
+          set -o pipefail
           api() {
             local out; out=$(curl -sk -m 60 -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" "${@:2}" "https://$CPANEL_HOST:2083/execute/$1")
-            [ "$(echo "$out" | jq -r .status 2>/dev/null)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors 2>/dev/null || echo "$out" | head -c 200)"; exit 1; }
+            [ "$(echo "$out" | jq -r .status 2>/dev/null)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors 2>/dev/null || echo "$out" | head -c 200)" >&2; exit 1; }
             echo "$out" | jq -c .data
           }
           if api Mysql/list_databases | jq -e --arg d "$DB_NAME" 'map(.database) | index($d)' > /dev/null; then
