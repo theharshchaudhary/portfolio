@@ -1,0 +1,149 @@
+name: Provision server (one-off)
+
+# Creates this site's own resources on the cPanel host through the cPanel API, from GitHub's
+# runners (the API challenges requests from home IPs). Idempotent: safe to run again.
+# Touches only: the subdomain below, MySQL database/user harshchaudhary_portfolio, and
+# ~/apps/portfolio/.env. Nothing belonging to other sites. See docs/DEPLOY.md.
+on:
+  workflow_dispatch:
+    inputs:
+      subdomain:
+        description: Subdomain to create (under harshchaudhary.com.np)
+        default: staging
+      write_env:
+        description: Write ~/apps/portfolio/.env (only needed once, or to change it)
+        type: boolean
+        default: true
+
+env:
+  CPANEL_HOST: 65.109.99.134
+  CPANEL_USER: harshchaudhary
+  ROOT_DOMAIN: harshchaudhary.com.np
+  APP_DIR: apps/portfolio
+  DB_NAME: harshchaudhary_portfolio
+
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check secrets
+        env:
+          CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          for v in CPANEL_TOKEN DB_PASSWORD FTP_PASSWORD; do
+            [ -n "${!v}" ] || { echo "::error::Missing secret $v"; exit 1; }
+          done
+
+      - name: Subdomain, PHP 8.4, SSL
+        env:
+          CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
+          SUB: ${{ inputs.subdomain }}
+        run: |
+          api() { # api <Module/function> [--data-urlencode k=v ...] → prints .data, fails on API errors
+            local out; out=$(curl -sk -m 60 -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" "${@:2}" "https://$CPANEL_HOST:2083/execute/$1")
+            echo "$out" | jq -e . > /dev/null 2>&1 || { echo "::error::$1 returned non-JSON: $(echo "$out" | head -c 200)"; exit 1; }
+            [ "$(echo "$out" | jq -r .status)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors)"; exit 1; }
+            echo "$out" | jq -c .data
+          }
+          FQDN="$SUB.$ROOT_DOMAIN"
+          if api DomainInfo/list_domains | jq -e --arg d "$FQDN" '.sub_domains | index($d)' > /dev/null; then
+            echo "Subdomain $FQDN already exists"
+          else
+            api SubDomain/addsubdomain --data-urlencode "domain=$SUB" --data-urlencode "rootdomain=$ROOT_DOMAIN" --data-urlencode "dir=$APP_DIR/public" > /dev/null
+            echo "Created $FQDN → ~/$APP_DIR/public"
+          fi
+          api LangPHP/php_set_vhost_versions --data-urlencode "version=ea-php84" --data-urlencode "vhost=$FQDN" > /dev/null
+          echo "PHP: $(api LangPHP/php_get_vhost_versions | jq -r --arg d "$FQDN" '.[] | select(.vhost == $d) | .version')"
+          api SSL/start_autossl_check > /dev/null && echo "AutoSSL check started"
+
+      - name: MySQL database and user
+        env:
+          CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          api() {
+            local out; out=$(curl -sk -m 60 -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" "${@:2}" "https://$CPANEL_HOST:2083/execute/$1")
+            [ "$(echo "$out" | jq -r .status 2>/dev/null)" = "1" ] || { echo "::error::$1: $(echo "$out" | jq -c .errors 2>/dev/null || echo "$out" | head -c 200)"; exit 1; }
+            echo "$out" | jq -c .data
+          }
+          if api Mysql/list_databases | jq -e --arg d "$DB_NAME" 'map(.database) | index($d)' > /dev/null; then
+            echo "Database $DB_NAME exists"
+          else
+            api Mysql/create_database --data-urlencode "name=$DB_NAME" > /dev/null && echo "Created database $DB_NAME"
+          fi
+          if api Mysql/list_users | jq -e --arg u "$DB_NAME" 'map(.user) | index($u)' > /dev/null; then
+            api Mysql/set_password --data-urlencode "user=$DB_NAME" --data-urlencode "password=$DB_PASSWORD" > /dev/null && echo "User $DB_NAME exists; password synced"
+          else
+            api Mysql/create_user --data-urlencode "name=$DB_NAME" --data-urlencode "password=$DB_PASSWORD" > /dev/null && echo "Created user $DB_NAME"
+          fi
+          api Mysql/set_privileges_on_database --data-urlencode "user=$DB_NAME" --data-urlencode "database=$DB_NAME" --data-urlencode "privileges=ALL PRIVILEGES" > /dev/null
+          echo "Granted ALL on $DB_NAME to $DB_NAME"
+
+      - name: Write ~/apps/portfolio/.env
+        if: inputs.write_env
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          APP_KEY: ${{ secrets.APP_KEY }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          OPS_TOKEN: ${{ secrets.OPS_TOKEN }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          STATS_GITHUB_TOKEN: ${{ secrets.STATS_GITHUB_TOKEN }}
+          SITE_BUILD_TOKEN: ${{ secrets.SITE_BUILD_TOKEN }}
+          SUB: ${{ inputs.subdomain }}
+        run: |
+          umask 077
+          cat > server.env <<EOF
+          APP_NAME="Harsh Chaudhary"
+          APP_ENV=production
+          APP_KEY=$APP_KEY
+          APP_DEBUG=false
+          APP_URL=https://$SUB.$ROOT_DOMAIN
+          LOG_CHANNEL=daily
+          LOG_LEVEL=warning
+          DB_CONNECTION=mysql
+          DB_HOST=localhost
+          DB_PORT=3306
+          DB_DATABASE=$DB_NAME
+          DB_USERNAME=$DB_NAME
+          DB_PASSWORD="$DB_PASSWORD"
+          SESSION_DRIVER=database
+          SESSION_SECURE_COOKIE=true
+          CACHE_STORE=database
+          QUEUE_CONNECTION=sync
+          MAIL_MAILER=sendmail
+          MAIL_FROM_ADDRESS=noreply@$ROOT_DOMAIN
+          MAIL_FROM_NAME="Harsh Chaudhary"
+          ADMIN_NAME="Harsh Chaudhary"
+          ADMIN_EMAIL=$ADMIN_EMAIL
+          ADMIN_PASSWORD="$ADMIN_PASSWORD"
+          OPS_TOKEN=$OPS_TOKEN
+          GITHUB_TOKEN=$STATS_GITHUB_TOKEN
+          GITHUB_USERNAME=theharshchaudhary
+          SITE_BUILD_REPO=${{ github.repository }}
+          SITE_BUILD_TOKEN=$SITE_BUILD_TOKEN
+          EOF
+          sed -i 's/^ *//' server.env
+          ftp() { curl -sS --ssl-reqd --insecure --ftp-create-dirs --retry 3 --user "$FTP_USERNAME:$FTP_PASSWORD" "$@"; }
+          ftp -T server.env "ftp://$FTP_SERVER/portfolio/.env"
+          # Owner read/write only.
+          ftp "ftp://$FTP_SERVER/" -Q "SITE CHMOD 600 portfolio/.env" -o /dev/null
+          rm -f server.env
+          echo "Wrote ~/$APP_DIR/.env (chmod 600)"
+
+      - name: Wait for HTTPS
+        env:
+          SUB: ${{ inputs.subdomain }}
+        run: |
+          for _ in $(seq 1 30); do
+            if curl -fsS -m 10 -o /dev/null "https://$SUB.$ROOT_DOMAIN/" 2>/dev/null || curl -sS -m 10 -o /dev/null -w "%{http_code}" "https://$SUB.$ROOT_DOMAIN/" 2>/dev/null | grep -qE '^(403|404)$'; then
+              echo "HTTPS is up on $SUB.$ROOT_DOMAIN"; exit 0
+            fi
+            sleep 20
+          done
+          echo "::warning::No valid certificate yet; AutoSSL usually finishes within minutes. Deploys will work once it does."

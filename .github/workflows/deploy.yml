@@ -106,6 +106,12 @@ jobs:
           SITE_ENV: production
       - name: Lighthouse budgets
         run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports
+          path: frontend/lighthouse-reports
+          retention-days: 14
 
   deploy-app:
     name: Deploy backend

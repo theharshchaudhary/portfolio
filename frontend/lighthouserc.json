@@ -3,11 +3,11 @@
     "collect": {
       "staticDistDir": "./build/client",
       "url": [
-        "http://localhost/index.html",
-        "http://localhost/projects/index.html",
-        "http://localhost/blog/index.html",
-        "http://localhost/about/index.html",
-        "http://localhost/services/index.html"
+        "http://localhost/",
+        "http://localhost/projects/",
+        "http://localhost/blog/",
+        "http://localhost/about/",
+        "http://localhost/services/"
       ],
       "numberOfRuns": 1,
       "settings": { "chromeFlags": "--no-sandbox --headless=new" }
