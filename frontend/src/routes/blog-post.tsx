@@ -4,7 +4,8 @@ import type { Route } from './+types/blog-post';
 import { PostCard, Prose } from '@/components/ui';
 import { getPost } from '@/lib/content.server';
 import { formatDate } from '@/lib/format';
-import { rootData, seo } from '@/lib/seo';
+import { ogImagePath, rootData, seo } from '@/lib/seo';
+import { blogPosting, breadcrumbs, ldJson } from '@/lib/schema';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const result = await getPost(params.slug);
@@ -15,8 +16,16 @@ export async function loader({ params }: Route.LoaderArgs) {
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   if (!loaderData) return [];
   const { post } = loaderData;
+  const site = rootData(matches)?.site;
+  const path = `/blog/${post.slug}`;
   return [
-    ...seo(rootData(matches)?.site, {
+    ...(site
+      ? ldJson(
+          blogPosting(site, post, post.seo.ogImage ?? post.coverImage ?? ogImagePath(path)),
+          breadcrumbs(site, [{ name: 'Blog', path: '/blog' }, { name: post.title, path }]),
+        )
+      : []),
+    ...seo(site, {
       title: post.title,
       description: post.excerpt,
       path: `/blog/${post.slug}`,

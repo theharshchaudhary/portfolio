@@ -16,6 +16,12 @@ export function absoluteUrl(site: SiteData, path: string): string {
   return new URL(path, site.settings.url).toString();
 }
 
+/** Where the post-build step writes each page's generated social image (scripts/postbuild.ts). */
+export function ogImagePath(path: string): string {
+  const clean = path.replace(/\/+$/, '');
+  return `/og${clean === '' ? '/index' : clean}.png`;
+}
+
 /** Builds the full set of title, description, canonical, Open Graph and Twitter tags for a page. */
 export function seo(site: SiteData | undefined, input: SeoInput): MetaDescriptor[] {
   if (!site) return [{ title: input.title ?? '' }];
@@ -24,7 +30,8 @@ export function seo(site: SiteData | undefined, input: SeoInput): MetaDescriptor
   const title = rawTitle ? settings.titleTemplate.replace('%s', rawTitle) : settings.defaultTitle;
   const description = input.overrides?.description || input.description || settings.description;
   const url = absoluteUrl(site, input.path);
-  const image = input.overrides?.ogImage || input.image || settings.defaultOgImage;
+  // Admin override → explicit image → auto-generated card. (noindex pages keep the site default.)
+  const image = input.overrides?.ogImage || input.image || (input.noindex ? settings.defaultOgImage : ogImagePath(input.path));
 
   const tags: MetaDescriptor[] = [
     { title },
@@ -42,7 +49,15 @@ export function seo(site: SiteData | undefined, input: SeoInput): MetaDescriptor
   if (image) {
     const imageUrl = absoluteUrl(site, image);
     tags.push({ property: 'og:image', content: imageUrl }, { name: 'twitter:image', content: imageUrl });
+    if (image === ogImagePath(input.path)) {
+      tags.push(
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: title },
+      );
+    }
   }
+  tags.push({ name: 'author', content: site.profile.name });
   if (input.noindex) tags.push({ name: 'robots', content: 'noindex, follow' });
   return tags;
 }

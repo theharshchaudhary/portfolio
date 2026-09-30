@@ -6,7 +6,8 @@ import { ProjectCard } from '@/components/ProjectCard';
 import { Prose } from '@/components/ui';
 import { getProject } from '@/lib/content.server';
 import { formatDate, formatNumber } from '@/lib/format';
-import { rootData, seo } from '@/lib/seo';
+import { ogImagePath, rootData, seo } from '@/lib/seo';
+import { breadcrumbs, ldJson, projectEntity } from '@/lib/schema';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const result = await getProject(params.slug);
@@ -17,14 +18,17 @@ export async function loader({ params }: Route.LoaderArgs) {
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   if (!loaderData) return [];
   const { project } = loaderData;
-  return seo(rootData(matches)?.site, {
-    title: project.title,
-    description: project.summary,
-    path: `/projects/${project.slug}`,
-    image: project.coverImage,
-    type: 'article',
-    overrides: project.seo,
-  });
+  const site = rootData(matches)?.site;
+  const path = `/projects/${project.slug}`;
+  return [
+    ...seo(site, { title: project.title, description: project.summary, path, image: project.coverImage, type: 'article', overrides: project.seo }),
+    ...(site
+      ? ldJson(
+          projectEntity(site, project, project.seo.ogImage ?? ogImagePath(path)),
+          breadcrumbs(site, [{ name: 'Projects', path: '/projects' }, { name: project.title, path }]),
+        )
+      : []),
+  ];
 }
 
 const linkClass =

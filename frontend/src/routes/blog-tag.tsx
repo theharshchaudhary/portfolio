@@ -4,6 +4,7 @@ import type { Route } from './+types/blog-tag';
 import { PageHeader, PostCard } from '@/components/ui';
 import { getTag } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, itemList, ldJson } from '@/lib/schema';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const result = await getTag(params.tag);
@@ -13,12 +14,18 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   if (!loaderData) return [];
-  const { tag } = loaderData;
-  return seo(rootData(matches)?.site, {
-    title: `${tag.name} articles`,
-    description: tag.description ?? `Articles about ${tag.name}.`,
-    path: `/blog/tag/${tag.slug}`,
-  });
+  const { tag, posts } = loaderData;
+  const site = rootData(matches)?.site;
+  const path = `/blog/tag/${tag.slug}`;
+  return [
+    ...seo(site, { title: `${tag.name} articles`, description: tag.description ?? `Articles about ${tag.name}.`, path }),
+    ...(site
+      ? ldJson(
+          itemList(site, `${tag.name} articles`, posts.map((p) => ({ name: p.title, path: `/blog/${p.slug}` }))),
+          breadcrumbs(site, [{ name: 'Blog', path: '/blog' }, { name: tag.name, path }]),
+        )
+      : []),
+  ];
 }
 
 export default function BlogTag({ loaderData }: Route.ComponentProps) {

@@ -8,6 +8,7 @@ import { useTurnstile } from '@/hooks/useTurnstile';
 import { sendContact } from '@/lib/api';
 import { getContact } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, faqPage, ldJson } from '@/lib/schema';
 import type { loader as rootLoader } from '@/root';
 
 export async function loader() {
@@ -16,12 +17,18 @@ export async function loader() {
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   const site = rootData(matches)?.site;
-  return seo(site, {
+  return [...seo(site, {
     title: loaderData?.page.heading ?? 'Contact',
     description: loaderData?.page.intro ?? (site ? `Get in touch with ${site.profile.name} for freelance work, collaboration or questions.` : undefined),
     path: '/contact',
     overrides: loaderData?.page.seo,
-  });
+  }), ...(site && loaderData
+    ? ldJson(
+        { '@type': 'ContactPage', url: `${site.settings.url}/contact`, about: { '@id': `${site.settings.url}/#person` } },
+        faqPage(loaderData.faqs),
+        breadcrumbs(site, [{ name: 'Contact', path: '/contact' }]),
+      )
+    : [])];
 }
 
 const inputClass =

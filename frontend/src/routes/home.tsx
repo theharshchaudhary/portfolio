@@ -9,6 +9,7 @@ import { PostCard } from '@/components/ui';
 import { HeroBanner } from '@/components/hero/HeroBanner';
 import { getHome } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { ldJson, person, website } from '@/lib/schema';
 import type { loader as rootLoader } from '@/root';
 
 export async function loader() {
@@ -16,7 +17,11 @@ export async function loader() {
 }
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
-  return seo(rootData(matches)?.site, { path: '/', type: 'profile', overrides: loaderData?.page.seo });
+  const site = rootData(matches)?.site;
+  return [
+    ...seo(site, { path: '/', type: 'profile', overrides: loaderData?.page.seo }),
+    ...(site ? ldJson(person(site), website(site)) : []),
+  ];
 }
 
 function SectionTitle({ icon: Icon, title, to, linkLabel }: { icon: typeof Pin; title: string; to: string; linkLabel: string }) {

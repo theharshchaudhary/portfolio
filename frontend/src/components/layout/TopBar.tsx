@@ -30,7 +30,6 @@ export function TopBar({ site }: { site: SiteData | undefined }) {
       <div className="mx-auto flex max-w-github items-center gap-4 px-4 py-2.5">
         <Link
           to="/"
-          aria-label="Home"
           className="flex items-center gap-2 rounded text-github-fg focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent"
         >
           {site ? <Avatar name={site.profile.name} src={site.profile.avatar} size={28} /> : <span className="h-7 w-7" />}
@@ -41,7 +40,7 @@ export function TopBar({ site }: { site: SiteData | undefined }) {
           type="button"
           onClick={() => setOpen(true)}
           className="group ml-auto flex h-8 w-full max-w-[18rem] items-center gap-2 rounded-md border border-github-border bg-github-subtle px-2.5 text-sm text-github-fg-subtle transition-colors hover:border-github-fg-subtle focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent sm:ml-0"
-          aria-label="Search the site"
+          aria-haspopup="dialog"
         >
           <Search className="h-4 w-4" />
           <span className="flex-1 text-left">

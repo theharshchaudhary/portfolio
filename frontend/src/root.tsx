@@ -13,6 +13,7 @@ import {
 import type { Route } from './+types/root';
 import { getSite } from '@/lib/content.server';
 import { trackPageView } from '@/lib/api';
+import { useReveal } from '@/hooks/useReveal';
 import { TopBar } from '@/components/layout/TopBar';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TabNav } from '@/components/layout/TabNav';
@@ -23,6 +24,13 @@ import './index.css';
 
 export async function loader() {
   return { site: await getSite() };
+}
+
+export function links() {
+  return [
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Blog RSS feed', href: '/rss.xml' },
+    { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' },
+  ];
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -51,12 +59,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Cookieless page-view count on first load and every client-side navigation. */
-function usePageViews(enabled: boolean) {
+/**
+ * Cookieless page-view count on first load and every client-side navigation. Only on the real
+ * domain, so local previews and staging don't pollute the numbers.
+ */
+function usePageViews(enabled: boolean, siteUrl: string) {
   const { pathname } = useLocation();
   useEffect(() => {
-    if (enabled) trackPageView(pathname, document.referrer);
-  }, [enabled, pathname]);
+    if (enabled && window.location.origin === new URL(siteUrl).origin) trackPageView(pathname, document.referrer);
+  }, [enabled, siteUrl, pathname]);
 }
 
 function Shell({ site, children }: { site: SiteData | undefined; children: React.ReactNode }) {
@@ -99,7 +110,8 @@ function Shell({ site, children }: { site: SiteData | undefined; children: React
 }
 
 export default function App({ loaderData }: Route.ComponentProps) {
-  usePageViews(loaderData.site.settings.analyticsEnabled);
+  usePageViews(loaderData.site.settings.analyticsEnabled, loaderData.site.settings.url);
+  useReveal();
   return (
     <Shell site={loaderData.site}>
       <Outlet />

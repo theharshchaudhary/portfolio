@@ -152,13 +152,8 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
                       return (
                         <div
                           key={dayIdx}
-                          className="heat-cell cursor-pointer rounded-[2px] hover:ring-1 hover:ring-github-fg-muted"
-                          style={{
-                            width: `${cellSize}px`,
-                            height: `${cellSize}px`,
-                            backgroundColor: LEVEL_COLORS[day.level],
-                            ['--w' as string]: weekIdx,
-                          }}
+                          className={`heat-cell l${day.level}`}
+                          style={{ ['--w' as string]: weekIdx }}
                           onMouseEnter={(e) => handleMouseEnter(day, e)}
                           onMouseMove={(e) => handleMouseMove(day, e)}
                           onMouseLeave={handleMouseLeave}

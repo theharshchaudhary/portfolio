@@ -5,6 +5,7 @@ import { GithubIcon } from '@/components/icons/brands';
 import { EmptyState, Faqs, PageHeader } from '@/components/ui';
 import { getSupport } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, faqPage, ldJson } from '@/lib/schema';
 import type { SupportMethod } from '@/types';
 
 export async function loader() {
@@ -12,12 +13,16 @@ export async function loader() {
 }
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
-  return seo(rootData(matches)?.site, {
-    title: loaderData?.page.heading ?? 'Support my work',
-    description: loaderData?.page.intro ?? 'Sponsor or tip to support open-source projects and free developer tools.',
-    path: '/support',
-    overrides: loaderData?.page.seo,
-  });
+  const site = rootData(matches)?.site;
+  return [
+    ...seo(site, {
+      title: loaderData?.page.heading ?? 'Support my work',
+      description: loaderData?.page.intro ?? 'Sponsor or tip to support open-source projects and free developer tools.',
+      path: '/support',
+      overrides: loaderData?.page.seo,
+    }),
+    ...(site && loaderData ? ldJson(faqPage(loaderData.faqs), breadcrumbs(site, [{ name: 'Support', path: '/support' }])) : []),
+  ];
 }
 
 const TYPE_ICON: Record<SupportMethod['type'], React.ComponentType<{ className?: string }>> = {

@@ -5,18 +5,28 @@ import { ProjectCard } from '@/components/ProjectCard';
 import { EmptyState, PageHeader } from '@/components/ui';
 import { getProjects } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, itemList, ldJson } from '@/lib/schema';
 
 export async function loader() {
   return getProjects();
 }
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
-  return seo(rootData(matches)?.site, {
-    title: loaderData?.page.heading ?? 'Projects',
-    description: loaderData?.page.intro,
-    path: '/projects',
-    overrides: loaderData?.page.seo,
-  });
+  const site = rootData(matches)?.site;
+  return [
+    ...seo(site, {
+      title: loaderData?.page.heading ?? 'Projects',
+      description: loaderData?.page.intro,
+      path: '/projects',
+      overrides: loaderData?.page.seo,
+    }),
+    ...(site && loaderData
+      ? ldJson(
+          itemList(site, 'Projects', loaderData.projects.map((p) => ({ name: p.title, path: `/projects/${p.slug}` }))),
+          breadcrumbs(site, [{ name: 'Projects', path: '/projects' }]),
+        )
+      : []),
+  ];
 }
 
 export default function Projects({ loaderData }: Route.ComponentProps) {

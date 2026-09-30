@@ -5,6 +5,7 @@ import { PageHeader, Prose } from '@/components/ui';
 import { getAbout } from '@/lib/content.server';
 import { formatMonthYear, formatNumber } from '@/lib/format';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, ldJson, profilePage } from '@/lib/schema';
 import type { loader as rootLoader } from '@/root';
 import type { Experience, Skill } from '@/types';
 
@@ -14,14 +15,14 @@ export async function loader() {
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   const site = rootData(matches)?.site;
-  return seo(site, {
+  return [...seo(site, {
     title: loaderData?.page.heading ?? `About ${site?.profile.name ?? ''}`,
     description: loaderData?.page.intro ?? site?.profile.shortBio,
     path: '/about',
     type: 'profile',
     image: site?.profile.avatar,
     overrides: loaderData?.page.seo,
-  });
+  }), ...(site ? ldJson(profilePage(site), breadcrumbs(site, [{ name: 'About', path: '/about' }])) : [])];
 }
 
 function Timeline({ items }: { items: Experience[] }) {
@@ -147,7 +148,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
       )}
 
       <p className="text-sm text-github-fg-muted">
-        Want to work together? <Link to="/contact" viewTransition className="font-medium text-github-accent hover:underline">Get in touch</Link>.
+        Want to work together? <Link to="/contact" viewTransition className="font-medium text-github-accent underline underline-offset-2">Get in touch</Link>.
       </p>
     </div>
   );

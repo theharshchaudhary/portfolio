@@ -14,7 +14,7 @@ export default {
           'border-muted': '#d8dee4',
           fg: '#1f2328',
           'fg-muted': '#656d76',
-          'fg-subtle': '#6e7781',
+          'fg-subtle': '#636c76',
           accent: '#0969da',
           'accent-emphasis': '#0969da',
           'success-fg': '#1a7f37',

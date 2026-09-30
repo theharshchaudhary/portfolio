@@ -5,6 +5,7 @@ import { Icon } from '@/components/icons';
 import { EmptyState, Faqs, PageHeader } from '@/components/ui';
 import { getServices } from '@/lib/content.server';
 import { rootData, seo } from '@/lib/seo';
+import { breadcrumbs, faqPage, ldJson, services as serviceSchema } from '@/lib/schema';
 import type { Service } from '@/types';
 
 export async function loader() {
@@ -13,12 +14,17 @@ export async function loader() {
 
 export function meta({ matches, loaderData }: Route.MetaArgs) {
   const site = rootData(matches)?.site;
-  return seo(site, {
-    title: loaderData?.page.heading ?? 'Services',
-    description: loaderData?.page.intro ?? (site ? `Hire ${site.profile.name} for web development.` : undefined),
-    path: '/services',
-    overrides: loaderData?.page.seo,
-  });
+  return [
+    ...seo(site, {
+      title: loaderData?.page.heading ?? 'Services',
+      description: loaderData?.page.intro ?? (site ? `Hire ${site.profile.name} for web development.` : undefined),
+      path: '/services',
+      overrides: loaderData?.page.seo,
+    }),
+    ...(site && loaderData
+      ? ldJson(...serviceSchema(site, loaderData.services), faqPage(loaderData.faqs), breadcrumbs(site, [{ name: 'Services', path: '/services' }]))
+      : []),
+  ];
 }
 
 function formatPrice(price: NonNullable<Service['price']>) {
@@ -34,7 +40,7 @@ export default function Services({ loaderData }: Route.ComponentProps) {
       <PageHeader title={page.heading ?? 'Services'} intro={page.intro} />
 
       {services.length === 0 ? (
-        <EmptyState icon={Wrench}>Service details are coming soon. <Link to="/contact" viewTransition className="text-github-accent hover:underline">Get in touch</Link> in the meantime.</EmptyState>
+        <EmptyState icon={Wrench}>Service details are coming soon. <Link to="/contact" viewTransition className="text-github-accent underline underline-offset-2">Get in touch</Link> in the meantime.</EmptyState>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((service) => {
@@ -98,7 +104,7 @@ export default function Services({ loaderData }: Route.ComponentProps) {
                     <strong className="text-github-fg">{t.name}</strong>
                     {[t.role, t.company].filter(Boolean).length > 0 && `, ${[t.role, t.company].filter(Boolean).join(', ')}`}
                     {t.project && (
-                      <> · <Link to={`/projects/${t.project.slug}`} viewTransition className="text-github-accent hover:underline">{t.project.title}</Link></>
+                      <> · <Link to={`/projects/${t.project.slug}`} viewTransition className="text-github-accent underline underline-offset-2">{t.project.title}</Link></>
                     )}
                   </span>
                 </figcaption>

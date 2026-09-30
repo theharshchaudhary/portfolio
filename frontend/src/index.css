@@ -67,28 +67,36 @@
 }
 
 /* Contribution graph fills in column by column on load. */
+/* Cells are styled by class (not inline styles) to keep the prerendered HTML small. */
 .heat-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  cursor: pointer;
   animation: heatIn 0.4s ease-out both;
   animation-delay: calc(var(--w, 0) * 9ms);
 }
+.heat-cell:hover { outline: 1px solid #636c76; }
+.heat-cell.l0 { background: #ebedf0; }
+.heat-cell.l1 { background: #9be9a8; }
+.heat-cell.l2 { background: #40c463; }
+.heat-cell.l3 { background: #30a14e; }
+.heat-cell.l4 { background: #216e39; }
 @keyframes heatIn {
   from { opacity: 0; transform: scale(0.4); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/*
- * Scroll reveal with zero JavaScript. Only browsers with scroll-driven animations run it; others
- * simply show the content, so nothing is ever hidden while waiting for JS (good for LCP and SEO).
- */
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: revealIn linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 55%;
-  }
+/* One-shot reveal for below-the-fold content (see hooks/useReveal.ts). */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.reveal-in {
+  animation: revealIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 @keyframes revealIn {
-  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: none; }
 }
 

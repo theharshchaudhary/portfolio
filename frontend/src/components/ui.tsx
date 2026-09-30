@@ -19,7 +19,7 @@ export function PageHeader({ title, intro, children }: { title: string; intro?: 
 export function Prose({ html, className = '' }: { html: string; className?: string }) {
   return (
     <div
-      className={`prose prose-sm max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:text-github-accent prose-a:no-underline hover:prose-a:underline prose-pre:rounded-md prose-pre:border prose-pre:border-github-border prose-code:before:content-none prose-code:after:content-none sm:prose-base ${className}`}
+      className={`prose prose-sm max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:text-github-accent prose-a:underline-offset-2 prose-pre:rounded-md prose-pre:border prose-pre:border-github-border prose-code:before:content-none prose-code:after:content-none sm:prose-base ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
