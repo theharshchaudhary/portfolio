@@ -1,7 +1,9 @@
 name: Provision server (one-off)
 
-# Creates this site's own resources on the cPanel host through the cPanel API, from GitHub's
-# runners (the API challenges requests from home IPs). Idempotent: safe to run again.
+# Sets up this site's own resources on the cPanel host. Idempotent: safe to run again.
+# The cPanel API steps are optional: Imunify360 currently challenges all API clients on port 2083,
+# so the subdomain, PHP version and database are created in the cPanel UI (docs/DEPLOY.md) and this
+# workflow only writes ~/apps/portfolio/.env over FTPS.
 # Touches only: the subdomain below, MySQL database/user harshchaudhary_portfolio, and
 # ~/apps/portfolio/.env. Nothing belonging to other sites. See docs/DEPLOY.md.
 on:
@@ -14,6 +16,10 @@ on:
         description: Write ~/apps/portfolio/.env (only needed once, or to change it)
         type: boolean
         default: true
+      cpanel_api:
+        description: Also create subdomain/PHP/database via the cPanel API (needs CPANEL_TOKEN secret)
+        type: boolean
+        default: false
 
 env:
   CPANEL_HOST: 65.109.99.134
@@ -32,12 +38,14 @@ jobs:
           CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          NEED: ${{ inputs.cpanel_api && 'CPANEL_TOKEN DB_PASSWORD FTP_PASSWORD' || 'DB_PASSWORD FTP_PASSWORD' }}
         run: |
-          for v in CPANEL_TOKEN DB_PASSWORD FTP_PASSWORD; do
+          for v in $NEED; do
             [ -n "${!v}" ] || { echo "::error::Missing secret $v"; exit 1; }
           done
 
       - name: Subdomain, PHP 8.4, SSL
+        if: inputs.cpanel_api
         env:
           CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
           SUB: ${{ inputs.subdomain }}
@@ -61,6 +69,7 @@ jobs:
           api SSL/start_autossl_check > /dev/null && echo "AutoSSL check started"
 
       - name: MySQL database and user
+        if: inputs.cpanel_api
         env:
           CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
