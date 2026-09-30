@@ -1,0 +1,2622 @@
+{
+  "generatedAt": "2026-09-30T13:29:38+00:00",
+  "settings": {
+    "siteName": "Harsh Chaudhary",
+    "tagline": "Full-stack developer",
+    "url": "https://harshchaudhary.com.np",
+    "titleTemplate": "%s · Harsh Chaudhary",
+    "defaultTitle": "Harsh Chaudhary — Full-stack Developer in Kathmandu, Nepal",
+    "description": "Harsh Chaudhary is a full-stack developer in Kathmandu, Nepal, building web apps and tools with Laravel, React and TypeScript.",
+    "defaultOgImage": null,
+    "footerText": "© 2026 Harsh Chaudhary",
+    "contactEmail": null,
+    "githubUsername": "theharshchaudhary",
+    "turnstileSiteKey": null,
+    "indexNowKey": null,
+    "analyticsEnabled": true,
+    "hero": {
+      "particleText": "Harsh Chaudhary",
+      "mode": "text",
+      "introLines": [
+        "Full-stack developer",
+        "Laravel · React · TypeScript",
+        "Based in Kathmandu, Nepal"
+      ],
+      "ctas": [
+        {
+          "label": "View projects",
+          "href": "/projects",
+          "style": "primary"
+        },
+        {
+          "label": "Get in touch",
+          "href": "/contact",
+          "style": "secondary"
+        }
+      ]
+    }
+  },
+  "profile": {
+    "name": "Harsh Chaudhary",
+    "username": "theharshchaudhary",
+    "headline": "Full-stack developer",
+    "shortBio": "Full-stack developer building products and tools for the web.",
+    "longBio": null,
+    "avatar": null,
+    "location": "Kathmandu, Nepal",
+    "company": null,
+    "status": null,
+    "openToWork": false,
+    "cvUrl": null,
+    "joinedAt": "2020-03-15T00:00:00Z",
+    "followers": 248,
+    "following": 73
+  },
+  "socials": [
+    {
+      "platform": "github",
+      "label": "GitHub",
+      "handle": "theharshchaudhary",
+      "url": "https://github.com/theharshchaudhary",
+      "showInSidebar": true,
+      "showInFooter": true,
+      "showOnContact": true
+    },
+    {
+      "platform": "x",
+      "label": "X",
+      "handle": "theharshchaudhary",
+      "url": "https://x.com/theharshchaudhary",
+      "showInSidebar": true,
+      "showInFooter": true,
+      "showOnContact": true
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "handle": "theharshchaudhary",
+      "url": "https://www.linkedin.com/in/theharshchaudhary",
+      "showInSidebar": true,
+      "showInFooter": true,
+      "showOnContact": true
+    }
+  ],
+  "nav": [
+    {
+      "label": "Overview",
+      "path": "/",
+      "icon": "book-open",
+      "badge": null
+    },
+    {
+      "label": "Projects",
+      "path": "/projects",
+      "icon": "folder-git-2",
+      "badge": 6
+    },
+    {
+      "label": "Blog",
+      "path": "/blog",
+      "icon": "rss",
+      "badge": 3
+    },
+    {
+      "label": "About",
+      "path": "/about",
+      "icon": "info",
+      "badge": null
+    },
+    {
+      "label": "Services",
+      "path": "/services",
+      "icon": "briefcase",
+      "badge": null
+    },
+    {
+      "label": "Contact",
+      "path": "/contact",
+      "icon": "mail",
+      "badge": null
+    },
+    {
+      "label": "Support",
+      "path": "/support",
+      "icon": "heart",
+      "badge": null
+    }
+  ],
+  "pages": {
+    "home": {
+      "heading": null,
+      "intro": null,
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "projects": {
+      "heading": "Projects",
+      "intro": "Open-source tools, client work and side projects.",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "blog": {
+      "heading": "Blog",
+      "intro": "Articles on web development, architecture and the craft of building software.",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "about": {
+      "heading": "About",
+      "intro": null,
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "services": {
+      "heading": "Services",
+      "intro": "Web development services for businesses and startups.",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "contact": {
+      "heading": "Get in touch",
+      "intro": "Have a project, question, or just want to say hi? I respond to all messages.",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    "support": {
+      "heading": "Support my work",
+      "intro": "If my open-source work has helped you, consider supporting it.",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    }
+  },
+  "redirects": [],
+  "experiences": [
+    {
+      "type": "work",
+      "title": "Full-stack Developer",
+      "organization": "Freelance",
+      "organizationUrl": null,
+      "logo": null,
+      "location": "Kathmandu, Nepal",
+      "startedAt": "2023-01-01",
+      "endedAt": null,
+      "description": "Placeholder description."
+    },
+    {
+      "type": "work",
+      "title": "Web Developer",
+      "organization": "Example Agency",
+      "organizationUrl": null,
+      "logo": null,
+      "location": "Kathmandu, Nepal",
+      "startedAt": "2021-06-01",
+      "endedAt": "2022-12-31",
+      "description": "Placeholder description."
+    },
+    {
+      "type": "education",
+      "title": "BE Computer Engineering",
+      "organization": "Example University",
+      "organizationUrl": null,
+      "logo": null,
+      "location": "Kathmandu, Nepal",
+      "startedAt": "2020-01-01",
+      "endedAt": null,
+      "description": "Placeholder description."
+    }
+  ],
+  "skills": [
+    {
+      "name": "TypeScript",
+      "category": "Languages",
+      "icon": null
+    },
+    {
+      "name": "PHP",
+      "category": "Languages",
+      "icon": null
+    },
+    {
+      "name": "React",
+      "category": "Frontend",
+      "icon": null
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Frontend",
+      "icon": null
+    },
+    {
+      "name": "Laravel",
+      "category": "Backend",
+      "icon": null
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend",
+      "icon": null
+    },
+    {
+      "name": "MySQL",
+      "category": "Data",
+      "icon": null
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Data",
+      "icon": null
+    },
+    {
+      "name": "Docker",
+      "category": "Tools",
+      "icon": null
+    },
+    {
+      "name": "Git",
+      "category": "Tools",
+      "icon": null
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "slug": "lensify",
+      "title": "lensify",
+      "summary": "AI-powered image optimization pipeline for web apps. Automatically converts, compresses, and serves responsive images with srcset generation.",
+      "body": "## The problem\n\nAI-powered image optimization pipeline for web apps. Automatically converts, compresses, and serves responsive images with srcset generation.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "TypeScript",
+        "Node.js",
+        "Sharp"
+      ],
+      "badges": [
+        "Open Source",
+        "CLI",
+        "Library"
+      ],
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "liveUrl": "https://lensify.dev",
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/lensify",
+      "stars": 1247,
+      "forks": 89,
+      "releaseVersion": "v2.4.1",
+      "pinned": true,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 2,
+      "slug": "pulse-db",
+      "title": "pulse-db",
+      "summary": "Real-time database monitoring dashboard for Laravel applications. Query analysis, slow-log detection, and N+1 alerts in one clean interface.",
+      "body": "## The problem\n\nReal-time database monitoring dashboard for Laravel applications. Query analysis, slow-log detection, and N+1 alerts in one clean interface.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "Laravel",
+        "Livewire",
+        "MySQL"
+      ],
+      "badges": [
+        "Open Source",
+        "Paid/SaaS"
+      ],
+      "language": "PHP",
+      "languageColor": "#4F5D95",
+      "liveUrl": "https://pulsedb.io",
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/pulse-db",
+      "stars": 892,
+      "forks": 56,
+      "releaseVersion": "v1.8.0",
+      "pinned": true,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 3,
+      "slug": "shipkit",
+      "title": "shipkit",
+      "summary": "Zero-config deployment CLI for static sites and SPAs. Push to deploy with built-in edge caching, preview branches, and instant rollbacks.",
+      "body": "## The problem\n\nZero-config deployment CLI for static sites and SPAs. Push to deploy with built-in edge caching, preview branches, and instant rollbacks.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "Go",
+        "Cobra"
+      ],
+      "badges": [
+        "Open Source",
+        "CLI"
+      ],
+      "language": "Go",
+      "languageColor": "#00ADD8",
+      "liveUrl": null,
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/shipkit",
+      "stars": 534,
+      "forks": 32,
+      "releaseVersion": "v0.9.3",
+      "pinned": true,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 4,
+      "slug": "react-flow-table",
+      "title": "react-flow-table",
+      "summary": "Headless, performant data table component for React. Virtualized rows, column pinning, sorting, and filtering with full keyboard navigation.",
+      "body": "## The problem\n\nHeadless, performant data table component for React. Virtualized rows, column pinning, sorting, and filtering with full keyboard navigation.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "React",
+        "TypeScript"
+      ],
+      "badges": [
+        "Free",
+        "Library",
+        "Open Source"
+      ],
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "liveUrl": "https://react-flow-table.vercel.app",
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/react-flow-table",
+      "stars": 318,
+      "forks": 21,
+      "releaseVersion": "v1.2.0",
+      "pinned": true,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 5,
+      "slug": "forge-rs",
+      "title": "forge-rs",
+      "summary": "Minimal, fast HTTP framework for Rust with middleware support, type-safe routing, and built-in OpenAPI documentation generation.",
+      "body": "## The problem\n\nMinimal, fast HTTP framework for Rust with middleware support, type-safe routing, and built-in OpenAPI documentation generation.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "Rust",
+        "Tokio"
+      ],
+      "badges": [
+        "Open Source",
+        "Free"
+      ],
+      "language": "Rust",
+      "languageColor": "#dea584",
+      "liveUrl": null,
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/forge-rs",
+      "stars": 412,
+      "forks": 28,
+      "releaseVersion": "v0.3.0",
+      "pinned": false,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 6,
+      "slug": "devbox-saas",
+      "title": "devbox-saas",
+      "summary": "Cloud development environments in your browser. Pre-configured runtimes, live collaboration, and zero local setup.",
+      "body": "## The problem\n\nCloud development environments in your browser. Pre-configured runtimes, live collaboration, and zero local setup.\n\n## The approach\n\nA write-up of how it was built goes here.\n\n```ts\nexport const hello = (name: string) => `Hello, ${name}`;\n```\n",
+      "coverImage": null,
+      "gallery": [],
+      "tech": [
+        "React",
+        "Laravel",
+        "Docker"
+      ],
+      "badges": [
+        "Paid/SaaS"
+      ],
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "liveUrl": "https://devbox.app",
+      "docsUrl": null,
+      "repoUrl": "https://github.com/theharshchaudhary/devbox-saas",
+      "stars": 203,
+      "forks": 12,
+      "releaseVersion": "v0.1.0-beta",
+      "pinned": false,
+      "startedAt": null,
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "slug": "the-architecture-of-a-developer-portfolio-that-scales",
+      "title": "The architecture of a developer portfolio that scales",
+      "excerpt": "How I structured my personal site as a type-safe, data-driven application.",
+      "body": "How I structured my personal site as a type-safe, data-driven application.\n\n## Background\n\nThis is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. \n\n## Code\n\n```php\nRoute::get('/api/v1/content', ContentController::class);\n```\n",
+      "coverImage": null,
+      "publishedAt": "2026-09-26T00:00:00+00:00",
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "readingTime": 2,
+      "tags": [
+        {
+          "name": "Architecture",
+          "slug": "architecture"
+        },
+        {
+          "name": "TypeScript",
+          "slug": "typescript"
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 2,
+      "slug": "designing-for-the-primer-aesthetic-without-copying-github",
+      "title": "Designing for the Primer aesthetic without copying GitHub",
+      "excerpt": "Borrowing visual language from GitHub is fine, but you need to make it your own.",
+      "body": "Borrowing visual language from GitHub is fine, but you need to make it your own.\n\n## Background\n\nThis is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. \n\n## Code\n\n```php\nRoute::get('/api/v1/content', ContentController::class);\n```\n",
+      "coverImage": null,
+      "publishedAt": "2026-09-18T00:00:00+00:00",
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "readingTime": 2,
+      "tags": [
+        {
+          "name": "Design",
+          "slug": "design"
+        },
+        {
+          "name": "React",
+          "slug": "react"
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    },
+    {
+      "id": 3,
+      "slug": "from-mock-data-to-a-laravel-api-a-migration-story",
+      "title": "From mock data to a Laravel API: a migration story",
+      "excerpt": "Replacing mock services with a real Laravel backend without touching components.",
+      "body": "Replacing mock services with a real Laravel backend without touching components.\n\n## Background\n\nThis is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. This is placeholder body text for local development. \n\n## Code\n\n```php\nRoute::get('/api/v1/content', ContentController::class);\n```\n",
+      "coverImage": null,
+      "publishedAt": "2026-09-10T00:00:00+00:00",
+      "updatedAt": "2026-09-30T13:26:29+00:00",
+      "readingTime": 2,
+      "tags": [
+        {
+          "name": "Architecture",
+          "slug": "architecture"
+        },
+        {
+          "name": "Laravel",
+          "slug": "laravel"
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null,
+        "ogImage": null
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Architecture",
+      "slug": "architecture",
+      "description": null,
+      "count": 2
+    },
+    {
+      "name": "Design",
+      "slug": "design",
+      "description": null,
+      "count": 1
+    },
+    {
+      "name": "Laravel",
+      "slug": "laravel",
+      "description": null,
+      "count": 1
+    },
+    {
+      "name": "React",
+      "slug": "react",
+      "description": null,
+      "count": 1
+    },
+    {
+      "name": "TypeScript",
+      "slug": "typescript",
+      "description": null,
+      "count": 1
+    }
+  ],
+  "services": [
+    {
+      "slug": "web-application-development",
+      "title": "Web application development",
+      "icon": "code",
+      "summary": "Custom web apps with Laravel and React, from idea to launch.",
+      "description": null,
+      "deliverables": [
+        "Discovery call",
+        "Delivery",
+        "Two weeks of support"
+      ],
+      "price": {
+        "amount": 500,
+        "currency": "USD",
+        "prefix": "From",
+        "unit": "per project"
+      }
+    },
+    {
+      "slug": "website-performance-seo",
+      "title": "Website performance & SEO",
+      "icon": "gauge",
+      "summary": "Speed audits, Core Web Vitals fixes and technical SEO.",
+      "description": null,
+      "deliverables": [
+        "Discovery call",
+        "Delivery",
+        "Two weeks of support"
+      ],
+      "price": {
+        "amount": 150,
+        "currency": "USD",
+        "prefix": "From",
+        "unit": null
+      }
+    },
+    {
+      "slug": "maintenance-support",
+      "title": "Maintenance & support",
+      "icon": "wrench",
+      "summary": "Ongoing updates, monitoring and fixes for existing sites.",
+      "description": null,
+      "deliverables": [
+        "Discovery call",
+        "Delivery",
+        "Two weeks of support"
+      ],
+      "price": null
+    }
+  ],
+  "faqs": [
+    {
+      "page": "services",
+      "question": "How long does a typical project take?",
+      "answer": "Most projects take 2–6 weeks depending on scope."
+    },
+    {
+      "page": "services",
+      "question": "Do you work with international clients?",
+      "answer": "Yes, remotely and across time zones."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Sample Client",
+      "role": "Founder",
+      "company": "Example Co.",
+      "photo": null,
+      "quote": "Placeholder testimonial for development.",
+      "project": {
+        "slug": "lensify",
+        "title": "lensify"
+      }
+    }
+  ],
+  "support": [
+    {
+      "type": "github_sponsors",
+      "label": "GitHub Sponsors",
+      "description": null,
+      "url": "https://github.com/sponsors/theharshchaudhary",
+      "crypto": null
+    },
+    {
+      "type": "kofi",
+      "label": "Ko-fi",
+      "description": null,
+      "url": "https://ko-fi.com/example",
+      "crypto": null
+    },
+    {
+      "type": "crypto",
+      "label": "Bitcoin",
+      "description": null,
+      "url": null,
+      "crypto": {
+        "coin": "BTC",
+        "network": "Bitcoin",
+        "address": "bc1qexampleaddressfordevelopmentonly0000000",
+        "qrSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"qr-svg qrcode\" viewBox=\"0 0 37 37\" preserveAspectRatio=\"xMidYMid\">\r\n<path class=\"qr-data-dark dark qrcode\" fill=\"#000\" d=\"M4 4 h1 v1 h-1Z M5 4 h1 v1 h-1Z M6 4 h1 v1 h-1Z M7 4 h1 v1 h-1Z M8 4 h1 v1 h-1Z M9 4 h1 v1 h-1Z M10 4 h1 v1 h-1Z M13 4 h1 v1 h-1Z M18 4 h1 v1 h-1Z M22 4 h1 v1 h-1Z M23 4 h1 v1 h-1Z M24 4 h1 v1 h-1Z M26 4 h1 v1 h-1Z M27 4 h1 v1 h-1Z M28 4 h1 v1 h-1Z M29 4 h1 v1 h-1Z M30 4 h1 v1 h-1Z M31 4 h1 v1 h-1Z M32 4 h1 v1 h-1Z M4 5 h1 v1 h-1Z M10 5 h1 v1 h-1Z M12 5 h1 v1 h-1Z M13 5 h1 v1 h-1Z M15 5 h1 v1 h-1Z M16 5 h1 v1 h-1Z M19 5 h1 v1 h-1Z M20 5 h1 v1 h-1Z M26 5 h1 v1 h-1Z M32 5 h1 v1 h-1Z M4 6 h1 v1 h-1Z M6 6 h1 v1 h-1Z M7 6 h1 v1 h-1Z M8 6 h1 v1 h-1Z M10 6 h1 v1 h-1Z M13 6 h1 v1 h-1Z M14 6 h1 v1 h-1Z M15 6 h1 v1 h-1Z M19 6 h1 v1 h-1Z M24 6 h1 v1 h-1Z M26 6 h1 v1 h-1Z M28 6 h1 v1 h-1Z M29 6 h1 v1 h-1Z M30 6 h1 v1 h-1Z M32 6 h1 v1 h-1Z M4 7 h1 v1 h-1Z M6 7 h1 v1 h-1Z M7 7 h1 v1 h-1Z M8 7 h1 v1 h-1Z M10 7 h1 v1 h-1Z M12 7 h1 v1 h-1Z M13 7 h1 v1 h-1Z M15 7 h1 v1 h-1Z M17 7 h1 v1 h-1Z M20 7 h1 v1 h-1Z M21 7 h1 v1 h-1Z M26 7 h1 v1 h-1Z M28 7 h1 v1 h-1Z M29 7 h1 v1 h-1Z M30 7 h1 v1 h-1Z M32 7 h1 v1 h-1Z M4 8 h1 v1 h-1Z M6 8 h1 v1 h-1Z M7 8 h1 v1 h-1Z M8 8 h1 v1 h-1Z M10 8 h1 v1 h-1Z M14 8 h1 v1 h-1Z M16 8 h1 v1 h-1Z M18 8 h1 v1 h-1Z M20 8 h1 v1 h-1Z M23 8 h1 v1 h-1Z M24 8 h1 v1 h-1Z M26 8 h1 v1 h-1Z M28 8 h1 v1 h-1Z M29 8 h1 v1 h-1Z M30 8 h1 v1 h-1Z M32 8 h1 v1 h-1Z M4 9 h1 v1 h-1Z M10 9 h1 v1 h-1Z M12 9 h1 v1 h-1Z M14 9 h1 v1 h-1Z M19 9 h1 v1 h-1Z M21 9 h1 v1 h-1Z M26 9 h1 v1 h-1Z M32 9 h1 v1 h-1Z M4 10 h1 v1 h-1Z M5 10 h1 v1 h-1Z M6 10 h1 v1 h-1Z M7 10 h1 v1 h-1Z M8 10 h1 v1 h-1Z M9 10 h1 v1 h-1Z M10 10 h1 v1 h-1Z M12 10 h1 v1 h-1Z M14 10 h1 v1 h-1Z M16 10 h1 v1 h-1Z M18 10 h1 v1 h-1Z M20 10 h1 v1 h-1Z M22 10 h1 v1 h-1Z M24 10 h1 v1 h-1Z M26 10 h1 v1 h-1Z M27 10 h1 v1 h-1Z\r\nM28 10 h1 v1 h-1Z M29 10 h1 v1 h-1Z M30 10 h1 v1 h-1Z M31 10 h1 v1 h-1Z M32 10 h1 v1 h-1Z M16 11 h1 v1 h-1Z M19 11 h1 v1 h-1Z M20 11 h1 v1 h-1Z M22 11 h1 v1 h-1Z M23 11 h1 v1 h-1Z M4 12 h1 v1 h-1Z M5 12 h1 v1 h-1Z M6 12 h1 v1 h-1Z M7 12 h1 v1 h-1Z M8 12 h1 v1 h-1Z M10 12 h1 v1 h-1Z M11 12 h1 v1 h-1Z M12 12 h1 v1 h-1Z M13 12 h1 v1 h-1Z M14 12 h1 v1 h-1Z M16 12 h1 v1 h-1Z M17 12 h1 v1 h-1Z M21 12 h1 v1 h-1Z M24 12 h1 v1 h-1Z M25 12 h1 v1 h-1Z M27 12 h1 v1 h-1Z M29 12 h1 v1 h-1Z M31 12 h1 v1 h-1Z M11 13 h1 v1 h-1Z M12 13 h1 v1 h-1Z M13 13 h1 v1 h-1Z M18 13 h1 v1 h-1Z M20 13 h1 v1 h-1Z M22 13 h1 v1 h-1Z M23 13 h1 v1 h-1Z M24 13 h1 v1 h-1Z M25 13 h1 v1 h-1Z M26 13 h1 v1 h-1Z M27 13 h1 v1 h-1Z M28 13 h1 v1 h-1Z M32 13 h1 v1 h-1Z M5 14 h1 v1 h-1Z M6 14 h1 v1 h-1Z M8 14 h1 v1 h-1Z M10 14 h1 v1 h-1Z M11 14 h1 v1 h-1Z M13 14 h1 v1 h-1Z M15 14 h1 v1 h-1Z M16 14 h1 v1 h-1Z M19 14 h1 v1 h-1Z M24 14 h1 v1 h-1Z M27 14 h1 v1 h-1Z M28 14 h1 v1 h-1Z M29 14 h1 v1 h-1Z M5 15 h1 v1 h-1Z M6 15 h1 v1 h-1Z M7 15 h1 v1 h-1Z M9 15 h1 v1 h-1Z M11 15 h1 v1 h-1Z M13 15 h1 v1 h-1Z M14 15 h1 v1 h-1Z M15 15 h1 v1 h-1Z M20 15 h1 v1 h-1Z M23 15 h1 v1 h-1Z M24 15 h1 v1 h-1Z M25 15 h1 v1 h-1Z M28 15 h1 v1 h-1Z M29 15 h1 v1 h-1Z M5 16 h1 v1 h-1Z M7 16 h1 v1 h-1Z M8 16 h1 v1 h-1Z M9 16 h1 v1 h-1Z M10 16 h1 v1 h-1Z M11 16 h1 v1 h-1Z M13 16 h1 v1 h-1Z M15 16 h1 v1 h-1Z M17 16 h1 v1 h-1Z M21 16 h1 v1 h-1Z M23 16 h1 v1 h-1Z M30 16 h1 v1 h-1Z M31 16 h1 v1 h-1Z M4 17 h1 v1 h-1Z M5 17 h1 v1 h-1Z M9 17 h1 v1 h-1Z M11 17 h1 v1 h-1Z M14 17 h1 v1 h-1Z M16 17 h1 v1 h-1Z M18 17 h1 v1 h-1Z M20 17 h1 v1 h-1Z M21 17 h1 v1 h-1Z M22 17 h1 v1 h-1Z M23 17 h1 v1 h-1Z M24 17 h1 v1 h-1Z M25 17 h1 v1 h-1Z M26 17 h1 v1 h-1Z M27 17 h1 v1 h-1Z M28 17 h1 v1 h-1Z M29 17 h1 v1 h-1Z M32 17 h1 v1 h-1Z M4 18 h1 v1 h-1Z\r\nM6 18 h1 v1 h-1Z M7 18 h1 v1 h-1Z M8 18 h1 v1 h-1Z M10 18 h1 v1 h-1Z M11 18 h1 v1 h-1Z M19 18 h1 v1 h-1Z M20 18 h1 v1 h-1Z M27 18 h1 v1 h-1Z M28 18 h1 v1 h-1Z M29 18 h1 v1 h-1Z M31 18 h1 v1 h-1Z M4 19 h1 v1 h-1Z M8 19 h1 v1 h-1Z M9 19 h1 v1 h-1Z M11 19 h1 v1 h-1Z M12 19 h1 v1 h-1Z M14 19 h1 v1 h-1Z M16 19 h1 v1 h-1Z M20 19 h1 v1 h-1Z M22 19 h1 v1 h-1Z M23 19 h1 v1 h-1Z M24 19 h1 v1 h-1Z M25 19 h1 v1 h-1Z M27 19 h1 v1 h-1Z M28 19 h1 v1 h-1Z M29 19 h1 v1 h-1Z M32 19 h1 v1 h-1Z M5 20 h1 v1 h-1Z M7 20 h1 v1 h-1Z M8 20 h1 v1 h-1Z M10 20 h1 v1 h-1Z M16 20 h1 v1 h-1Z M17 20 h1 v1 h-1Z M21 20 h1 v1 h-1Z M29 20 h1 v1 h-1Z M30 20 h1 v1 h-1Z M31 20 h1 v1 h-1Z M4 21 h1 v1 h-1Z M6 21 h1 v1 h-1Z M7 21 h1 v1 h-1Z M9 21 h1 v1 h-1Z M11 21 h1 v1 h-1Z M12 21 h1 v1 h-1Z M18 21 h1 v1 h-1Z M20 21 h1 v1 h-1Z M21 21 h1 v1 h-1Z M22 21 h1 v1 h-1Z M23 21 h1 v1 h-1Z M24 21 h1 v1 h-1Z M26 21 h1 v1 h-1Z M27 21 h1 v1 h-1Z M28 21 h1 v1 h-1Z M30 21 h1 v1 h-1Z M31 21 h1 v1 h-1Z M32 21 h1 v1 h-1Z M4 22 h1 v1 h-1Z M9 22 h1 v1 h-1Z M10 22 h1 v1 h-1Z M15 22 h1 v1 h-1Z M16 22 h1 v1 h-1Z M19 22 h1 v1 h-1Z M21 22 h1 v1 h-1Z M24 22 h1 v1 h-1Z M25 22 h1 v1 h-1Z M28 22 h1 v1 h-1Z M4 23 h1 v1 h-1Z M7 23 h1 v1 h-1Z M8 23 h1 v1 h-1Z M9 23 h1 v1 h-1Z M15 23 h1 v1 h-1Z M19 23 h1 v1 h-1Z M20 23 h1 v1 h-1Z M23 23 h1 v1 h-1Z M25 23 h1 v1 h-1Z M26 23 h1 v1 h-1Z M27 23 h1 v1 h-1Z M29 23 h1 v1 h-1Z M31 23 h1 v1 h-1Z M32 23 h1 v1 h-1Z M4 24 h1 v1 h-1Z M6 24 h1 v1 h-1Z M8 24 h1 v1 h-1Z M9 24 h1 v1 h-1Z M10 24 h1 v1 h-1Z M14 24 h1 v1 h-1Z M15 24 h1 v1 h-1Z M17 24 h1 v1 h-1Z M19 24 h1 v1 h-1Z M20 24 h1 v1 h-1Z M21 24 h1 v1 h-1Z M24 24 h1 v1 h-1Z M25 24 h1 v1 h-1Z M26 24 h1 v1 h-1Z M27 24 h1 v1 h-1Z M28 24 h1 v1 h-1Z M30 24 h1 v1 h-1Z M31 24 h1 v1 h-1Z M12 25 h1 v1 h-1Z M14 25 h1 v1 h-1Z M16 25 h1 v1 h-1Z\r\nM18 25 h1 v1 h-1Z M20 25 h1 v1 h-1Z M23 25 h1 v1 h-1Z M24 25 h1 v1 h-1Z M28 25 h1 v1 h-1Z M31 25 h1 v1 h-1Z M32 25 h1 v1 h-1Z M4 26 h1 v1 h-1Z M5 26 h1 v1 h-1Z M6 26 h1 v1 h-1Z M7 26 h1 v1 h-1Z M8 26 h1 v1 h-1Z M9 26 h1 v1 h-1Z M10 26 h1 v1 h-1Z M12 26 h1 v1 h-1Z M14 26 h1 v1 h-1Z M19 26 h1 v1 h-1Z M22 26 h1 v1 h-1Z M23 26 h1 v1 h-1Z M24 26 h1 v1 h-1Z M26 26 h1 v1 h-1Z M28 26 h1 v1 h-1Z M29 26 h1 v1 h-1Z M4 27 h1 v1 h-1Z M10 27 h1 v1 h-1Z M16 27 h1 v1 h-1Z M20 27 h1 v1 h-1Z M22 27 h1 v1 h-1Z M23 27 h1 v1 h-1Z M24 27 h1 v1 h-1Z M28 27 h1 v1 h-1Z M29 27 h1 v1 h-1Z M32 27 h1 v1 h-1Z M4 28 h1 v1 h-1Z M6 28 h1 v1 h-1Z M7 28 h1 v1 h-1Z M8 28 h1 v1 h-1Z M10 28 h1 v1 h-1Z M12 28 h1 v1 h-1Z M14 28 h1 v1 h-1Z M16 28 h1 v1 h-1Z M17 28 h1 v1 h-1Z M21 28 h1 v1 h-1Z M24 28 h1 v1 h-1Z M25 28 h1 v1 h-1Z M26 28 h1 v1 h-1Z M27 28 h1 v1 h-1Z M28 28 h1 v1 h-1Z M30 28 h1 v1 h-1Z M31 28 h1 v1 h-1Z M32 28 h1 v1 h-1Z M4 29 h1 v1 h-1Z M6 29 h1 v1 h-1Z M7 29 h1 v1 h-1Z M8 29 h1 v1 h-1Z M10 29 h1 v1 h-1Z M12 29 h1 v1 h-1Z M13 29 h1 v1 h-1Z M14 29 h1 v1 h-1Z M18 29 h1 v1 h-1Z M20 29 h1 v1 h-1Z M21 29 h1 v1 h-1Z M22 29 h1 v1 h-1Z M23 29 h1 v1 h-1Z M24 29 h1 v1 h-1Z M29 29 h1 v1 h-1Z M30 29 h1 v1 h-1Z M31 29 h1 v1 h-1Z M32 29 h1 v1 h-1Z M4 30 h1 v1 h-1Z M6 30 h1 v1 h-1Z M7 30 h1 v1 h-1Z M8 30 h1 v1 h-1Z M10 30 h1 v1 h-1Z M12 30 h1 v1 h-1Z M13 30 h1 v1 h-1Z M14 30 h1 v1 h-1Z M15 30 h1 v1 h-1Z M16 30 h1 v1 h-1Z M19 30 h1 v1 h-1Z M20 30 h1 v1 h-1Z M25 30 h1 v1 h-1Z M26 30 h1 v1 h-1Z M27 30 h1 v1 h-1Z M28 30 h1 v1 h-1Z M29 30 h1 v1 h-1Z M31 30 h1 v1 h-1Z M4 31 h1 v1 h-1Z M10 31 h1 v1 h-1Z M12 31 h1 v1 h-1Z M15 31 h1 v1 h-1Z M19 31 h1 v1 h-1Z M20 31 h1 v1 h-1Z M23 31 h1 v1 h-1Z M24 31 h1 v1 h-1Z M28 31 h1 v1 h-1Z M29 31 h1 v1 h-1Z M31 31 h1 v1 h-1Z M4 32 h1 v1 h-1Z M5 32 h1 v1 h-1Z\r\nM6 32 h1 v1 h-1Z M7 32 h1 v1 h-1Z M8 32 h1 v1 h-1Z M9 32 h1 v1 h-1Z M10 32 h1 v1 h-1Z M12 32 h1 v1 h-1Z M13 32 h1 v1 h-1Z M15 32 h1 v1 h-1Z M16 32 h1 v1 h-1Z M19 32 h1 v1 h-1Z M21 32 h1 v1 h-1Z M23 32 h1 v1 h-1Z M28 32 h1 v1 h-1Z M29 32 h1 v1 h-1Z M30 32 h1 v1 h-1Z\"/>\r\n</svg>\r\n"
+      }
+    }
+  ],
+  "github": {
+    "contributions": [
+      {
+        "date": "2025-09-28",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-09-29",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-09-30",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-10-01",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-10-02",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-04",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2025-10-05",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-06",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-08",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-10-09",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-10-10",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-11",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2025-10-12",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-13",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-10-14",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-10-15",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-16",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-17",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-10-18",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-10-19",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-10-20",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-10-21",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-10-22",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-23",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-24",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-10-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-10-28",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-29",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-10-30",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-10-31",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-11-01",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-11-02",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-03",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-11-04",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-11-05",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-11-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-07",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-11-08",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-11-09",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-11-10",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-11-11",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-11-12",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-11-13",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-11-14",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-15",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2025-11-16",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-17",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-11-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-19",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-11-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-21",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-11-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-24",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-11-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-11-26",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-11-27",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-11-28",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-11-29",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-11-30",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-12-01",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-12-02",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-12-03",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-12-04",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-12-05",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-12-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-08",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2025-12-09",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-12-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-11",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-12",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-12-13",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-14",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-12-15",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2025-12-16",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-12-17",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-12-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-19",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-12-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-21",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-24",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2025-12-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-26",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2025-12-27",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-12-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2025-12-29",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2025-12-30",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2025-12-31",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-01-01",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-01-02",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-01-03",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-01-04",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-05",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-06",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-08",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-01-09",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-01-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-11",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-01-12",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-13",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-01-14",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-15",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-16",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-01-17",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-19",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-20",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-21",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-01-22",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-01-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-24",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-01-25",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-01-26",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-01-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-01-28",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-01-29",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-30",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-01-31",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-02-01",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-02",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-02-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-04",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-02-05",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-02-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-08",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-09",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-02-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-11",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-02-12",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-02-13",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-14",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-02-15",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-16",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-02-17",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-02-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-19",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-02-20",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-02-21",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-22",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-02-23",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-02-24",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-25",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-02-26",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-02-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-02-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-01",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-02",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-03-03",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-04",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-03-05",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-03-06",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-08",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-09",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-10",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-03-11",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-03-12",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-03-13",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-14",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-03-15",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-16",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-17",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-03-18",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-03-19",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-20",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-21",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-03-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-23",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-03-24",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-03-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-27",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-03-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-29",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-03-30",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-03-31",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-01",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-02",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-04-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-04",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-05",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-07",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-04-08",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-04-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-10",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-04-11",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-12",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-04-13",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-04-14",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-15",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-16",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-17",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-04-18",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-04-19",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-04-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-21",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-04-22",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-04-23",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-24",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-25",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-04-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-04-27",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-04-28",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-04-29",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-04-30",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-01",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-02",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-03",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-05-04",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-05",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-06",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-05-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-08",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-05-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-10",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-05-11",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-12",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-13",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-14",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-05-15",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-16",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-05-17",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-05-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-19",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-21",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-22",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-05-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-24",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-05-25",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-26",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-27",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-28",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-05-29",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-05-30",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-31",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-01",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-02",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-03",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-06-04",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-06-05",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-07",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-06-08",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-11",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-12",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-13",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-06-14",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-15",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-16",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-17",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-06-18",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-06-19",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-21",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-23",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-06-24",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-06-25",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-06-26",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-06-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-29",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-06-30",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-07-01",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-02",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-03",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-07-04",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-05",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-07-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-08",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-10",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-07-11",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-12",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-13",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-07-14",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-15",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-16",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-07-17",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-07-18",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-19",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-20",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-21",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-07-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-24",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-28",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-29",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-07-30",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-07-31",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-08-01",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-08-02",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-08-03",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-08-04",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-08-05",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-08-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-08",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-10",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-08-11",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-12",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-08-13",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-08-14",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-08-15",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-08-16",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-08-17",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-08-18",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-08-19",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-08-20",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-08-21",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-22",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-24",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-27",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-28",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-08-29",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-08-30",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-08-31",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-01",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-09-02",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-09-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-04",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-09-05",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-07",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-09-08",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-09-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-11",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-09-12",
+        "count": 6,
+        "level": 1
+      },
+      {
+        "date": "2026-09-13",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-09-14",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-09-15",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-09-16",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-09-17",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-09-18",
+        "count": 15,
+        "level": 4
+      },
+      {
+        "date": "2026-09-19",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-20",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-21",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-09-22",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-09-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-24",
+        "count": 12,
+        "level": 3
+      },
+      {
+        "date": "2026-09-25",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-09-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-09-27",
+        "count": 9,
+        "level": 2
+      },
+      {
+        "date": "2026-09-28",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-09-29",
+        "count": 5,
+        "level": 1
+      },
+      {
+        "date": "2026-09-30",
+        "count": 8,
+        "level": 2
+      }
+    ],
+    "streak": {
+      "current": 12,
+      "longest": 47,
+      "total": 1890,
+      "bestDay": "2025-10-24"
+    },
+    "languages": [
+      {
+        "name": "TypeScript",
+        "percentage": 42,
+        "color": "#3178c6"
+      },
+      {
+        "name": "PHP",
+        "percentage": 24,
+        "color": "#4F5D95"
+      },
+      {
+        "name": "Python",
+        "percentage": 15,
+        "color": "#3572A5"
+      },
+      {
+        "name": "Go",
+        "percentage": 8,
+        "color": "#00ADD8"
+      },
+      {
+        "name": "Rust",
+        "percentage": 6,
+        "color": "#dea584"
+      },
+      {
+        "name": "Shell",
+        "percentage": 5,
+        "color": "#89e051"
+      }
+    ],
+    "activity": [
+      {
+        "id": "1",
+        "type": "release",
+        "title": "Released v2.4.1",
+        "description": "lensify",
+        "timestamp": "2026-09-28T13:26:29+00:00",
+        "repo": "theharshchaudhary/lensify",
+        "url": "https://github.com/theharshchaudhary/lensify"
+      },
+      {
+        "id": "2",
+        "type": "pr_merged",
+        "title": "Merged a pull request",
+        "description": "Add AVIF output support",
+        "timestamp": "2026-09-27T13:26:29+00:00",
+        "repo": "theharshchaudhary/lensify",
+        "url": "https://github.com/theharshchaudhary/lensify"
+      },
+      {
+        "id": "3",
+        "type": "commit",
+        "title": "Pushed 4 commits",
+        "description": "Refactor query analyzer",
+        "timestamp": "2026-09-25T13:26:29+00:00",
+        "repo": "theharshchaudhary/pulse-db",
+        "url": "https://github.com/theharshchaudhary/pulse-db"
+      },
+      {
+        "id": "4",
+        "type": "star",
+        "title": "Starred a repository",
+        "description": "laravel/framework",
+        "timestamp": "2026-09-24T13:26:29+00:00",
+        "repo": "laravel/framework",
+        "url": "https://github.com/laravel/framework"
+      }
+    ],
+    "fetchedAt": "2026-09-30T13:26:29+00:00"
+  }
+}

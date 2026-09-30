@@ -19,14 +19,16 @@ export function StreakStats({ stats }: { stats: StreakStats }) {
     },
     {
       label: 'Total contributions',
-      value: stats.total.toLocaleString(),
+      value: stats.total.toLocaleString('en-US'),
       icon: Activity,
       color: 'text-github-accent',
       bg: 'bg-blue-50',
     },
     {
       label: 'Best day',
-      value: new Date(stats.bestDay).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      value: stats.bestDay
+        ? new Date(stats.bestDay).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
+        : '—',
       icon: CalendarDays,
       color: 'text-github-done-fg',
       bg: 'bg-purple-50',

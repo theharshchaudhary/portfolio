@@ -39,7 +39,7 @@ export function ContributionHeatmap({ data }: { data: ContributionDay[] }) {
     weeks.forEach((week, col) => {
       if (week.length > 0) {
         const firstDay = new Date(week[0].date);
-        const month = firstDay.getMonth();
+        const month = firstDay.getUTCMonth();
         if (month !== lastMonth) {
           monthLabels.push({ col, label: MONTH_NAMES[month] });
           lastMonth = month;
@@ -203,6 +203,7 @@ function formatTooltip(day: ContributionDay): string {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'UTC',
   });
   if (day.count === 0) return `No contributions on ${formatted}`;
   return `${day.count} contribution${day.count > 1 ? 's' : ''} on ${formatted}`;

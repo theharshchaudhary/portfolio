@@ -1,13 +1,15 @@
 import type { MetaDescriptor } from 'react-router';
-import type { SiteData } from '@/types';
+import type { Seo, SiteData } from '@/types';
 
 interface SeoInput {
-  title?: string;
-  description?: string;
+  title?: string | null;
+  description?: string | null;
   path: string;
-  image?: string;
+  image?: string | null;
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
+  /** Admin-entered overrides; each non-empty field wins over the generated value. */
+  overrides?: Seo | null;
 }
 
 export function absoluteUrl(site: SiteData, path: string): string {
@@ -18,12 +20,11 @@ export function absoluteUrl(site: SiteData, path: string): string {
 export function seo(site: SiteData | undefined, input: SeoInput): MetaDescriptor[] {
   if (!site) return [{ title: input.title ?? '' }];
   const { settings } = site;
-  const title = input.title
-    ? settings.titleTemplate.replace('%s', input.title)
-    : settings.defaultTitle;
-  const description = input.description ?? settings.description;
+  const rawTitle = input.overrides?.title || input.title;
+  const title = rawTitle ? settings.titleTemplate.replace('%s', rawTitle) : settings.defaultTitle;
+  const description = input.overrides?.description || input.description || settings.description;
   const url = absoluteUrl(site, input.path);
-  const image = input.image ?? settings.defaultOgImage;
+  const image = input.overrides?.ogImage || input.image || settings.defaultOgImage;
 
   const tags: MetaDescriptor[] = [
     { title },

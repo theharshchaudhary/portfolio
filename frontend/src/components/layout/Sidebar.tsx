@@ -1,125 +1,136 @@
-import { Mail, MapPin, Building, Link as LinkIcon, Users, Eye } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, XIcon } from '@/components/icons/brands';
-import type { Profile } from '@/types';
+import { MapPin, Building, Users, CalendarDays, FileDown } from 'lucide-react';
+import type { SiteData } from '@/types';
 import { formatMonthYear, formatNumber } from '@/lib/format';
+import { Avatar } from '@/components/Avatar';
+import { PlatformIcon } from '@/components/icons';
 
-const AVATAR_SVG = `data:image/svg+xml,${encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0969da"/>
-      <stop offset="100%" stop-color="#1f883d"/>
-    </linearGradient>
-  </defs>
-  <rect width="260" height="260" fill="url(#bg)"/>
-  <text x="130" y="155" font-family="system-ui, sans-serif" font-size="110" font-weight="bold" fill="white" text-anchor="middle">HC</text>
-</svg>
-`)}`;
-
-export function Sidebar({ profile }: { profile: Profile }) {
-  const socialLinks = [
-    { icon: Building, text: profile.company, href: undefined },
-    { icon: MapPin, text: profile.location, href: undefined },
-    { icon: LinkIcon, text: profile.website.replace('https://', ''), href: profile.website },
-    { icon: XIcon, text: `@${profile.twitter}`, href: `https://x.com/${profile.twitter}` },
-    { icon: GithubIcon, text: `@${profile.github}`, href: `https://github.com/${profile.github}` },
-    { icon: LinkedinIcon, text: `@${profile.linkedin}`, href: `https://linkedin.com/in/${profile.linkedin}` },
-    { icon: Mail, text: profile.email, href: `mailto:${profile.email}` },
-  ];
+export function Sidebar({ site }: { site: SiteData }) {
+  const { profile, languages } = site;
+  const socials = site.socials.filter((s) => s.showInSidebar);
+  const github = site.socials.find((s) => s.platform === 'github')?.url
+    ?? (site.settings.githubUsername ? `https://github.com/${site.settings.githubUsername}` : null);
 
   return (
-    <aside className="hidden md:block w-[296px] flex-shrink-0 px-4 pt-6">
-      <div className="sticky top-4">
+    <aside className="hidden w-[296px] flex-shrink-0 px-4 pt-6 md:block" aria-label="Profile">
+      <div className="sticky top-16">
         <div className="overflow-hidden rounded-lg border border-github-border bg-github-canvas">
           <div className="h-3 bg-gradient-to-r from-github-accent to-github-success-fg" />
           <div className="p-4">
-            <img
-              src={AVATAR_SVG}
-              alt={profile.name}
-              className="h-[260px] w-full max-w-[260px] rounded-full border border-github-border-muted object-cover"
-              width={260}
-              height={260}
-            />
-            <h2 className="mt-4 text-xl font-semibold text-github-fg">{profile.name}</h2>
-            <p className="text-base text-github-fg-muted">{profile.username}</p>
+            <Avatar name={profile.name} src={profile.avatar} size={230} className="mx-auto" />
+            <p className="mt-4 text-xl font-semibold text-github-fg">{profile.name}</p>
+            {profile.headline && <p className="text-base text-github-fg-muted">{profile.headline}</p>}
 
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-github-border bg-github-subtle px-3 py-1 text-sm text-github-fg-muted">
-              <span className="text-base">{profile.status.emoji}</span>
-              <span>{profile.status.message}</span>
+            {(profile.status || profile.openToWork) && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {profile.openToWork && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-sm font-medium text-github-success-fg">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-github-success-emphasis" />
+                    Open to work
+                  </span>
+                )}
+                {profile.status && (
+                  <span className="inline-flex items-center gap-2 rounded-full border border-github-border bg-github-subtle px-3 py-1 text-sm text-github-fg-muted">
+                    {profile.status.emoji && <span>{profile.status.emoji}</span>}
+                    <span>{profile.status.message}</span>
+                  </span>
+                )}
+              </div>
+            )}
+
+            {profile.shortBio && <p className="mt-3 text-sm text-github-fg">{profile.shortBio}</p>}
+
+            <div className="mt-4 flex gap-2">
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  className="flex-1 rounded-md border border-github-border bg-github-subtle px-3 py-1.5 text-center text-sm font-medium text-github-fg transition-colors hover:bg-github-inset focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent"
+                >
+                  Follow
+                </a>
+              )}
+              {profile.cvUrl && (
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-md bg-github-success-emphasis px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-github-success-fg focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent focus-visible:ring-offset-1"
+                >
+                  <FileDown className="h-4 w-4" />
+                  Resume
+                </a>
+              )}
             </div>
 
-            <p className="mt-3 text-sm text-github-fg">{profile.bio}</p>
-
-            <a
-              href={`https://github.com/${profile.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 block w-full rounded-md border border-github-border bg-github-subtle px-3 py-1.5 text-center text-sm font-medium text-github-fg transition-colors hover:bg-github-inset focus:outline-none focus:ring-2 focus:ring-github-accent focus:ring-offset-1"
-            >
-              Follow
-            </a>
-
-            <div className="mt-4 flex items-center gap-4 text-sm">
-              <span className="flex items-center gap-1 text-github-fg-muted">
+            {profile.followers !== null && (
+              <p className="mt-4 flex items-center gap-1 text-sm text-github-fg-muted">
                 <Users className="h-4 w-4" />
-                <strong className="text-github-fg">{formatNumber(profile.followers)}</strong> followers
-              </span>
-              <span className="text-github-fg-muted">
-                <strong className="text-github-fg">{profile.following}</strong> following
-              </span>
-            </div>
+                <strong className="text-github-fg">{formatNumber(profile.followers)}</strong> followers ·{' '}
+                <strong className="text-github-fg">{profile.following ?? 0}</strong> following
+              </p>
+            )}
 
             <ul className="mt-4 space-y-2 text-sm">
-              {socialLinks.map((link, i) => (
-                <li key={i} className="flex items-center gap-2 text-github-fg-muted">
-                  <link.icon className="h-4 w-4 flex-shrink-0 text-github-fg-subtle" />
-                  {link.href ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-github-accent hover:underline focus:outline-none focus:ring-2 focus:ring-github-accent focus:ring-offset-2 rounded"
-                    >
-                      {link.text}
-                    </a>
-                  ) : (
-                    <span>{link.text}</span>
-                  )}
+              {profile.company && (
+                <li className="flex items-center gap-2 text-github-fg-muted">
+                  <Building className="h-4 w-4 flex-shrink-0 text-github-fg-subtle" />
+                  {profile.company}
+                </li>
+              )}
+              {profile.location && (
+                <li className="flex items-center gap-2 text-github-fg-muted">
+                  <MapPin className="h-4 w-4 flex-shrink-0 text-github-fg-subtle" />
+                  {profile.location}
+                </li>
+              )}
+              {socials.map((link) => (
+                <li key={link.url} className="flex items-center gap-2">
+                  <PlatformIcon platform={link.platform} className="h-4 w-4 flex-shrink-0 text-github-fg-subtle" />
+                  <a
+                    href={link.url}
+                    target={link.url.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer me"
+                    className="truncate rounded text-github-accent hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-github-accent"
+                  >
+                    {link.handle ? `@${link.handle}` : link.label}
+                  </a>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-4 border-t border-github-border pt-3 text-sm text-github-fg-muted">
-              <span className="flex items-center gap-1">
-                <Eye className="h-4 w-4" />
-                Joined {formatMonthYear(profile.joinedDate)}
-              </span>
-            </div>
+            {profile.joinedAt && (
+              <p className="mt-4 flex items-center gap-1 border-t border-github-border pt-3 text-sm text-github-fg-muted">
+                <CalendarDays className="h-4 w-4" />
+                Joined {formatMonthYear(profile.joinedAt)}
+              </p>
+            )}
 
-            <div className="mt-4 border-t border-github-border pt-3">
-              <h3 className="mb-2 text-sm font-semibold text-github-fg">Top languages</h3>
-              <div className="flex h-2 overflow-hidden rounded-full">
-                {profile.languages.map((lang) => (
-                  <div
-                    key={lang.name}
-                    className="h-full"
-                    style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
-                    title={`${lang.name} ${lang.percentage}%`}
-                  />
-                ))}
+            {languages.length > 0 && (
+              <div className="mt-4 border-t border-github-border pt-3">
+                <p className="mb-2 text-sm font-semibold text-github-fg">Top languages</p>
+                <div className="flex h-2 overflow-hidden rounded-full">
+                  {languages.map((lang) => (
+                    <div
+                      key={lang.name}
+                      className="h-full"
+                      style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
+                      title={`${lang.name} ${lang.percentage}%`}
+                    />
+                  ))}
+                </div>
+                <ul className="mt-2 space-y-1">
+                  {languages.map((lang) => (
+                    <li key={lang.name} className="flex items-center justify-between text-xs text-github-fg-muted">
+                      <span className="flex items-center gap-1.5">
+                        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: lang.color }} />
+                        {lang.name}
+                      </span>
+                      <span>{lang.percentage}%</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="mt-2 space-y-1">
-                {profile.languages.map((lang) => (
-                  <li key={lang.name} className="flex items-center justify-between text-xs text-github-fg-muted">
-                    <span className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: lang.color }} />
-                      {lang.name}
-                    </span>
-                    <span>{lang.percentage}%</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            )}
           </div>
         </div>
       </div>
