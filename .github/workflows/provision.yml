@@ -10,8 +10,11 @@ on:
   workflow_dispatch:
     inputs:
       subdomain:
-        description: Subdomain to create (under harshchaudhary.com.np)
+        description: Subdomain to create via the cPanel API (only with cpanel_api)
         default: staging
+      app_url:
+        description: Public URL of the site (APP_URL in .env)
+        default: https://harshchaudhary.com.np
       write_env:
         description: Write ~/apps/portfolio/.env (only needed once, or to change it)
         type: boolean
@@ -114,7 +117,7 @@ jobs:
           APP_ENV=production
           APP_KEY=$APP_KEY
           APP_DEBUG=false
-          APP_URL=https://$SUB.$ROOT_DOMAIN
+          APP_URL=${{ inputs.app_url }}
           LOG_CHANNEL=daily
           LOG_LEVEL=warning
           DB_CONNECTION=mysql
@@ -147,14 +150,9 @@ jobs:
           rm -f server.env
           echo "Wrote ~/$APP_DIR/.env (chmod 600)"
 
-      - name: Wait for HTTPS
+      - name: Check HTTPS
         env:
-          SUB: ${{ inputs.subdomain }}
+          APP_URL: ${{ inputs.app_url }}
         run: |
-          for _ in $(seq 1 30); do
-            if curl -fsS -m 10 -o /dev/null "https://$SUB.$ROOT_DOMAIN/" 2>/dev/null || curl -sS -m 10 -o /dev/null -w "%{http_code}" "https://$SUB.$ROOT_DOMAIN/" 2>/dev/null | grep -qE '^(403|404)$'; then
-              echo "HTTPS is up on $SUB.$ROOT_DOMAIN"; exit 0
-            fi
-            sleep 20
-          done
-          echo "::warning::No valid certificate yet; AutoSSL usually finishes within minutes. Deploys will work once it does."
+          code=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" "$APP_URL/" || echo 000)
+          echo "$APP_URL answered HTTP $code over HTTPS"

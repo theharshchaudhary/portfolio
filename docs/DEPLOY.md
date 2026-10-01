@@ -19,8 +19,8 @@ builds everything and ships it as tarballs; a small PHP script on the server unp
     └── _unpack.php               release installer (token-guarded)
 ```
 
-Staging: `staging.harshchaudhary.com.np` with document root `apps/portfolio/public`, served with
-`noindex`. At launch the main domain points at the same `public/` (see "Launch").
+The main domain serves it: `~/public_html` is a symlink to `~/apps/portfolio/public` (cPanel doesn't
+allow changing the main domain's document root). The old CMS template that lived there was deleted.
 
 ## How deploys happen
 
@@ -38,14 +38,10 @@ new or changed are sent to IndexNow.
 
 ## One-time setup
 
-1. **cPanel UI** (the API is behind an Imunify360 bot challenge for scripts, including GitHub's runners):
-   - *Domains → Create A New Domain*: `staging.harshchaudhary.com.np`, untick "Share document root",
-     document root `apps/portfolio/public`.
-   - *MultiPHP Manager*: tick `staging.harshchaudhary.com.np` → PHP 8.4 (`ea-php84`) → Apply.
-   - *Manage My Databases*: create database `portfolio` (→ `harshchaudhary_portfolio`), user `portfolio`
-     (→ `harshchaudhary_portfolio`) with the password in `~/.ssh/portfolio_db_password.txt`, then add the
-     user to the database with **All Privileges**.
-   - *SSL/TLS Status*: tick the staging domain → Run AutoSSL.
+1. **cPanel → Terminal** (the API is behind an Imunify360 bot challenge for scripts; the Terminal
+   isn't): create the database and user with `uapi`, check no other domain lives inside `public_html`,
+   then replace `public_html` with the symlink. PHP 8.4 comes from the site's `.htaccess`, so the main
+   domain's MultiPHP setting (which subdomains may inherit) is left alone.
 2. **Server `.env`**: run **Actions → Provision server (one-off)** (defaults). It writes
    `~/apps/portfolio/.env` (chmod 600) over FTPS from the repository secrets. Its contents:
 
@@ -54,7 +50,7 @@ new or changed are sent to IndexNow.
    APP_ENV=production
    APP_KEY=base64:…            # php artisan key:generate --show
    APP_DEBUG=false
-   APP_URL=https://staging.harshchaudhary.com.np
+   APP_URL=https://harshchaudhary.com.np
    DB_CONNECTION=mysql
    DB_HOST=localhost
    DB_DATABASE=harshchaudhary_portfolio
@@ -79,7 +75,7 @@ new or changed are sent to IndexNow.
 
 3. **GitHub → Settings → Secrets and variables → Actions**
    - Secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` (the shared deploy account), `OPS_TOKEN`
-   - Variables: `SITE_URL` (`https://staging.harshchaudhary.com.np`), `SITE_ENV` (`staging`), `FTP_DIR` (`portfolio`)
+   - Variables: `SITE_URL` (`https://harshchaudhary.com.np`), `SITE_ENV` (`production`), `FTP_DIR` (`portfolio`)
 
    Deploy jobs are skipped until `SITE_URL` is set.
 4. Run **Actions → CI / Deploy → Run workflow** with "Deploy the backend too" ticked.
@@ -93,15 +89,12 @@ new or changed are sent to IndexNow.
 
 Set an expiry you'll remember; the admin dashboard shows "Last site build: failed" when a token expires.
 
-## Launch (staging → harshchaudhary.com.np)
+## After the first deploy
 
-1. In the admin: Site settings → General → Site URL `https://harshchaudhary.com.np`; set the IndexNow key.
-2. `.env`: `APP_URL=https://harshchaudhary.com.np`.
-3. Delete the old CMS template from `public_html` (no backup needed) and point the main domain at
-   `apps/portfolio/public` (replace `public_html` with a symlink to it).
-4. GitHub variables: `SITE_URL=https://harshchaudhary.com.np`, `SITE_ENV=production`; run the workflow.
-5. Google Search Console + Bing Webmaster Tools: verify the domain, submit `/sitemap.xml`.
-6. Remove the staging subdomain (or leave it: it's `noindex`).
+1. Log in at `/admin` (email in the `ADMIN_EMAIL` secret, password in `~/.ssh/portfolio_admin_password.txt`),
+   set up two-factor login, then change the password.
+2. Site settings → Integrations: generate an IndexNow key.
+3. Google Search Console + Bing Webmaster Tools: verify the domain, submit `/sitemap.xml`.
 
 ## Troubleshooting
 
